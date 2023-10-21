@@ -67,7 +67,7 @@ public class AnimalShelter implements UpdatesListener {
     public void scheduleNotificationMassage(List<AnimalShelter>animalShelterList){
         animalShelterList.forEach(animalShelter -> {
             SendMessage sendMessage = new SendMessage(AnimalShelter.this.animalShelter.getId(),
-                    AnimalShelter.this.animalShelter.getNotification());
+                    AnimalShelter.this.animalShelter.getInfo());
             telegramBot.execute(sendMessage);
         });
     }
