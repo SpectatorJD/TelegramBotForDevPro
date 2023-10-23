@@ -11,27 +11,28 @@ import javax.persistence.Id;
 public class Manager {
     @Id
     private long id;
-    private String info;
+    private String text;
 
-    public Manager(long id, String info) {
+
+    public Manager(long id, String text) {
         this.id = id;
-        this.info = info;
+        this.text = text;
     }
 
     public long getId() {
         return id;
     }
 
-    public String getInfo() {
-        return info;
+    public String getText() {
+        return text;
     }
 
     public void setId(long id) {
         this.id = id;
     }
 
-    public void setInfo(String info) {
-        this.info = info;
+    public void setText(String text) {
+        this.text = text;
     }
 
     @Override
@@ -39,19 +40,19 @@ public class Manager {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Manager manager = (Manager) o;
-        return id == manager.id && Objects.equals(info, manager.info);
+        return id == manager.id && Objects.equals(text, manager.text);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, info);
+        return Objects.hash(id, text);
     }
 
     @Override
     public String toString() {
         return "Manager{" +
                 "id=" + id +
-                ", info='" + info + '\'' +
+                ", text='" + text + '\'' +
                 '}';
     }
 }
