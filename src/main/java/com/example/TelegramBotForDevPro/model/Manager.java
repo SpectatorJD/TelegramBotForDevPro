@@ -9,30 +9,48 @@ import javax.persistence.Id;
 
 @Entity(name = "manager")
 public class Manager {
+    public Manager() {
+    }
+
     @Id
     private long id;
-    private String text;
+    private String firstText;
+    private String secondText;
 
 
-    public Manager(long id, String text) {
+    public Manager(long id, String firstText, String secondText) {
         this.id = id;
-        this.text = text;
+        this.firstText = firstText;
+        this.secondText= secondText;
     }
 
     public long getId() {
         return id;
     }
 
-    public String getText() {
-        return text;
+    public String getFirstText() {
+        return firstText;
+    }
+
+    public String getSecondText() {
+        return secondText;
     }
 
     public void setId(long id) {
         this.id = id;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setFirstText(String firstText) {
+        this.firstText = firstText;
+    }
+
+    @Override
+    public String toString() {
+        return "Manager{" +
+                "id=" + id +
+                ", firstText='" + firstText + '\'' +
+                ", secondText='" + secondText + '\'' +
+                '}';
     }
 
     @Override
@@ -40,19 +58,16 @@ public class Manager {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Manager manager = (Manager) o;
-        return id == manager.id && Objects.equals(text, manager.text);
+        return id == manager.id && Objects.equals(firstText, manager.firstText) && Objects.equals(secondText, manager.secondText);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, text);
+        return Objects.hash(id, firstText, secondText);
     }
 
-    @Override
-    public String toString() {
-        return "Manager{" +
-                "id=" + id +
-                ", text='" + text + '\'' +
-                '}';
+    public void setSecondText(String secondText) {
+        this.secondText = secondText;
     }
+
 }
