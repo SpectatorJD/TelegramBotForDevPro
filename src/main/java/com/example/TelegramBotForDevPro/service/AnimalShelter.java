@@ -1,10 +1,12 @@
 package com.example.TelegramBotForDevPro.service;
 
 import com.example.TelegramBotForDevPro.configuration.TelegramBotConfiguration;
+import com.example.TelegramBotForDevPro.model.Manager;
 import com.example.TelegramBotForDevPro.repository.AnimalShelterRepository;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
 import com.pengrad.telegrambot.model.Update;
+import com.pengrad.telegrambot.request.EditMessageText;
 import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +15,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.MessageEntity;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
@@ -62,7 +65,6 @@ public String getBotUsername() {
     }
 
     @Override
-    @SneakyThrows
     public void onUpdateReceived(org.telegram.telegrambots.meta.api.objects.Update update) {
         if (update.hasMessage()) {
             Message message = update.getMessage();
@@ -78,11 +80,77 @@ public String getBotUsername() {
                     throw new RuntimeException(e);
                 }
             }
+            registar(chatId());
+            if (update.hasCallbackQuery()) {
+                String callbackData = update.getCallbackQuery().getData();
+                long messageId = update.getCallbackQuery().getMessage().getMessageId();
+                long chatId = update.getCallbackQuery().getMessage().getChatId();
+                if (callbackData.equals("yes_button")) {
+                    String text = "text that i see yes";
+                   EditMessageText message = new EditMessageText();
+                    message.setChatId(String.valueOf(chatId));
+                    message.setText(text);
+                    message.setMessageId((int) messageId);
+                    try {
+                        execute(message);
+                    } catch (TelegramApiException e) {
+//            logger error("Error occurred: " + e.getMessage());
+                    }
+                } else if (callbackData.equals("yes_button")) {
+                    String text = "text that i see no";
+                    EditMessageText message = new EditMessageText();
+                    message.setChatId(String.valueOf(chatId));
+                    message.setText(text);
+                    message.setMessageId((int) messageId);
+                    try {
+                        execute(message);
+                    } catch (TelegramApiException e) {
+//            logger error("Error occurred: " + e.getMessage());
+                    }
+                }
+            }
+//            if (update.hasCallbackQuery()) {
+//                handleCallBack(update.getCallbackQuery());
+//            }
 //            handlerMessage(update.getMessage());
+
+
         }
     }
-//@SneakyThrows
-//    private void handlerMessage(Message message) {
+
+    private void registar(long chatId) {
+        SendMessage message = new SendMessage();
+        message.getChatId(String.valueOf(chatId));
+        message.setText("do you really want register");
+
+        InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
+        List<List<InlineKeyboardButton>> rowsInLine = new ArrayList<>();
+        List<InlineKeyboardButton> rowInLine = new ArrayList<>();
+
+        var yesButton = new InlineKeyboardButton();
+        yesButton.setText("Yes");
+        yesButton.setCallbackData("yes_button");
+
+        var noButton = new InlineKeyboardButton();
+        noButton.setText("No");
+        noButton.setCallbackData("no_button");
+
+        rowInLine.add(yesButton);
+        rowInLine.add(noButton);
+        rowsInLine.add(rowInLine);
+        markup.setKeyboard(rowsInLine);
+        message.setReplyMarkup(markup);
+
+        try {
+            execute(message);
+        } catch (TelegramApiException e) {
+//            logger error("Error occurred: " + e.getMessage());
+        }
+
+
+    }
+
+//    private void handlerMessage(Message message)  {
 //    if (message.hasText() && message.hasEntities()) {
 //        Optional<MessageEntity> commandEntity = message.getEntities().stream()
 //                .filter(e -> "bot_command".equals(e.getType()))
@@ -92,17 +160,64 @@ public String getBotUsername() {
 //                    commandEntity.get().getLength());
 //            switch (command) {
 //                case "/Консультация с потенциальным хозяином животного из приюта ":
-//                    List<List<InlineKeyboardButton>> bottons;
-//                    execute(SendMessage.builder().text("Пожалуста выберети что вы хотите знать")
-//                            .chatId(message.getChatId()
-//                                    .toString())
-//                            .replyMarkup(InlineKeyboardMarkup.builder().keyboard().build())
-//                            .build());
+//                    List<List<InlineKeyboardButton>> buttons = new ArrayList<>();
+//                    buttons.add(
+//                            Arrays.asList(
+//                                    InlineKeyboardButton.builder().text("first button").callbackData("first result").build(),
+//                                    InlineKeyboardButton.builder().text("second button").callbackData("second result").build()
+//                            )
+//                    );
+//                    try {
+//                        execute(SendMessage.builder().text("Пожалуста выберети что вы хотите знать")
+//                                .chatId(message.getChatId()
+//                                        .toString())
+//                                .replyMarkup(InlineKeyboardMarkup.builder().keyboard(buttons).build())
+//                                .build());
+//                    } catch (TelegramApiException e) {
+//                        System.out.println("ошибка в телеграме Api");
+//                    }
 //            }
 //        }
 //    }
 //    }
 
+//        message.setText(" Что хотите выбрать");
+//
+//        // создаем объект встроенной клавиатуры
+//        InlineKeyboardMarkup markupInline = new InlineKeyboardMarkup();
+//
+//// создаем список списков кнопок, который впоследствии объединит ряды кнопок
+//        List<List<InlineKeyboardButton>> rowsInline = new ArrayList<>();
+//
+//// создаем список с кнопками для первого ряда
+//        List<InlineKeyboardButton> rowInline1 = new ArrayList<>();
+//
+//// создаем первую кнопку для в ряду
+//        InlineKeyboardButton inlineKeyboardButton1 = new InlineKeyboardButton();
+//
+//// устанавливаем параметр текста на кнопке
+//        inlineKeyboardButton1.setText("Кошки");
+//
+//// устанавливаем параметр callback_data
+//        inlineKeyboardButton1.setCallbackData("/cats");
+//
+//
+//        // создаем по аналогии вторую кнопку в ряду
+//        InlineKeyboardButton inlineKeyboardButton2 = new InlineKeyboardButton();
+//        inlineKeyboardButton2.setText("Собаки");
+//        inlineKeyboardButton2.setCallbackData("/dogs");
+//
+//// добавляем кнопки в первый ряд в том порядке,
+//// какой нам необходим. В рассматриваемом случае ряд будет содержать 2 кнопки,
+//// размер которых будет одинаково пропорционально растянут по ширине сообщения,
+//// под которым клавиатура располагается
+//        rowInline1.add(inlineKeyboardButton1);
+//        rowInline1.add(inlineKeyboardButton2);
+//
+//
+//
+//        return message;
+//    }
 
 //    public int process(List<Update> updates) {
 //        updates.forEach(update -> {
