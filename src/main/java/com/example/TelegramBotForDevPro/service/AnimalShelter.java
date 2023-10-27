@@ -5,9 +5,7 @@ import com.example.TelegramBotForDevPro.model.Manager;
 import com.example.TelegramBotForDevPro.repository.AnimalShelterRepository;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
-import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.EditMessageText;
-import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +16,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.MessageEntity;
+import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
@@ -65,10 +64,12 @@ public String getBotUsername() {
     }
 
     @Override
-    public void onUpdateReceived(org.telegram.telegrambots.meta.api.objects.Update update) {
+    public void onUpdateReceived(Update update) {
         if (update.hasMessage()) {
             Message message = update.getMessage();
-            if (message.hasText()) {
+            if (update.getMessage().hasText()) {
+                if (update.getMessage().getText().equals("/start")) {
+
                 try {
                     execute(
                             SendMessage
@@ -79,16 +80,59 @@ public String getBotUsername() {
                 } catch (TelegramApiException e) {
                     throw new RuntimeException(e);
                 }
+                }
             }
-            registar(chatId());
+            registar1();
             if (update.hasCallbackQuery()) {
                 String callbackData = update.getCallbackQuery().getData();
                 long messageId = update.getCallbackQuery().getMessage().getMessageId();
                 long chatId = update.getCallbackQuery().getMessage().getChatId();
-                if (callbackData.equals("yes_button")) {
+                if (callbackData.equals("cat_button")) {
+                    registar2();
+                    if (callbackData.equals("head3_button")) {
+                        registar3();
+                        if (callbackData.equals("query1_button")) {
+                            message.getChatId();
+                            message.setText("вот информация по выбору 1");
+                            message.setMessageId((int) messageId);
+                            try {
+                                execute(message);
+                            } catch (TelegramApiException e) {
+                                logger.info("Processing update: {}", update);
+                        } else if (callbackData.equals("query2_button")) {
+                                message.getChatId();
+                                message.setText("вот информация по выбору 2");
+                                message.setMessageId((int) messageId);
+                                try {
+                                    execute(message);
+                                } catch (TelegramApiException e) {
+                                    logger.info("Processing update: {}", update);
+                        } else if (callbackData.equals("query3_button")) {
+                                    message.getChatId();
+                                    message.setText("вот информация по выбору 3");
+                                    message.setMessageId((int) messageId);
+                                    try {
+                                        execute(message);
+                                    } catch (TelegramApiException e) {
+                                        logger.info("Processing update: {}", update);
+                                }
+                        } else if (callbackData.equals("query4_button")) {
+                                    message.getChatId();
+                                    message.setText("вот информация по выбору 4");
+                                    message.setMessageId((int) messageId);
+                                    try {
+                                        execute(message);
+                                    } catch (TelegramApiException e) {
+                                        logger.info("Processing update: {}", update);
+                                }
+
+                        }
+
+                        }
+                    }
                     String text = "text that i see yes";
-                   EditMessageText message = new EditMessageText();
-                    message.setChatId(String.valueOf(chatId));
+                   SendMessage message1= new SendMessage();
+                    message.getChatId(String.valueOf(chatId));
                     message.setText(text);
                     message.setMessageId((int) messageId);
                     try {
@@ -96,10 +140,10 @@ public String getBotUsername() {
                     } catch (TelegramApiException e) {
 //            logger error("Error occurred: " + e.getMessage());
                     }
-                } else if (callbackData.equals("yes_button")) {
+                } else if (callbackData.equals("dog_button")) {
                     String text = "text that i see no";
                     EditMessageText message = new EditMessageText();
-                    message.setChatId(String.valueOf(chatId));
+                    message.getChatId(String.valueOf(chatId));
                     message.setText(text);
                     message.setMessageId((int) messageId);
                     try {
@@ -109,34 +153,68 @@ public String getBotUsername() {
                     }
                 }
             }
-//            if (update.hasCallbackQuery()) {
-//                handleCallBack(update.getCallbackQuery());
-//            }
-//            handlerMessage(update.getMessage());
-
-
         }
     }
 
-    private void registar(long chatId) {
+    private void registar1() {
         SendMessage message = new SendMessage();
-        message.getChatId(String.valueOf(chatId));
-        message.setText("do you really want register");
+        message.getChatId();
+        message.setText("choose, please");
 
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowsInLine = new ArrayList<>();
         List<InlineKeyboardButton> rowInLine = new ArrayList<>();
 
-        var yesButton = new InlineKeyboardButton();
-        yesButton.setText("Yes");
-        yesButton.setCallbackData("yes_button");
+        var catButton = new InlineKeyboardButton();
+        catButton.setText("Cat");
+        catButton.setCallbackData("cat_button");
 
-        var noButton = new InlineKeyboardButton();
-        noButton.setText("No");
-        noButton.setCallbackData("no_button");
+        var dogButton = new InlineKeyboardButton();
+        dogButton.setText("Dog");
+        dogButton.setCallbackData("dog_button");
 
-        rowInLine.add(yesButton);
-        rowInLine.add(noButton);
+        rowInLine.add(catButton);
+        rowInLine.add(dogButton);
+        rowsInLine.add(rowInLine);
+        markup.setKeyboard(rowsInLine);
+        message.setReplyMarkup(markup);
+
+        try {
+            execute(message);
+        } catch (TelegramApiException e) {
+//            logger error("Error occurred: " + e.getMessage());
+        }
+    }
+
+        private void registar2() {
+        SendMessage message = new SendMessage();
+        message.getChatId();
+        message.setText("choose, please");
+
+        InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
+        List<List<InlineKeyboardButton>> rowsInLine = new ArrayList<>();
+        List<InlineKeyboardButton> rowInLine = new ArrayList<>();
+
+        var head1Button = new InlineKeyboardButton();
+        head1Button.setText("Определение запроса");
+        head1Button.setCallbackData("head1_button");
+
+        var head2Button = new InlineKeyboardButton();
+        head2Button.setText("Консультация с новым пользователем");
+        head2Button.setCallbackData("head2_button");
+
+        var head3Button = new InlineKeyboardButton();
+        head3Button.setText("Консультация с потенциальным хозяином животного из приюта");
+        head3Button.setCallbackData("head3_button");
+
+        var head4Button = new InlineKeyboardButton();
+        head4Button.setText("Ведение питомца");
+        head4Button.setCallbackData("head4_button");
+
+        rowInLine.add(head1Button);
+        rowInLine.add(head2Button);
+        rowInLine.add(head3Button);
+        rowInLine.add(head4Button);
         rowsInLine.add(rowInLine);
         markup.setKeyboard(rowsInLine);
         message.setReplyMarkup(markup);
@@ -149,122 +227,46 @@ public String getBotUsername() {
 
 
     }
+        private void registar3() {
+        SendMessage message = new SendMessage();
+        message.getChatId();
+        message.setText("choose, please");
 
-//    private void handlerMessage(Message message)  {
-//    if (message.hasText() && message.hasEntities()) {
-//        Optional<MessageEntity> commandEntity = message.getEntities().stream()
-//                .filter(e -> "bot_command".equals(e.getType()))
-//                .findFirst();
-//        if (commandEntity.isPresent()) {
-//            String command = message.getText().substring((commandEntity.get().getOffset()),
-//                    commandEntity.get().getLength());
-//            switch (command) {
-//                case "/Консультация с потенциальным хозяином животного из приюта ":
-//                    List<List<InlineKeyboardButton>> buttons = new ArrayList<>();
-//                    buttons.add(
-//                            Arrays.asList(
-//                                    InlineKeyboardButton.builder().text("first button").callbackData("first result").build(),
-//                                    InlineKeyboardButton.builder().text("second button").callbackData("second result").build()
-//                            )
-//                    );
-//                    try {
-//                        execute(SendMessage.builder().text("Пожалуста выберети что вы хотите знать")
-//                                .chatId(message.getChatId()
-//                                        .toString())
-//                                .replyMarkup(InlineKeyboardMarkup.builder().keyboard(buttons).build())
-//                                .build());
-//                    } catch (TelegramApiException e) {
-//                        System.out.println("ошибка в телеграме Api");
-//                    }
-//            }
-//        }
-//    }
-//    }
+        InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
+        List<List<InlineKeyboardButton>> rowsInLine = new ArrayList<>();
+        List<InlineKeyboardButton> rowInLine = new ArrayList<>();
 
-//        message.setText(" Что хотите выбрать");
-//
-//        // создаем объект встроенной клавиатуры
-//        InlineKeyboardMarkup markupInline = new InlineKeyboardMarkup();
-//
-//// создаем список списков кнопок, который впоследствии объединит ряды кнопок
-//        List<List<InlineKeyboardButton>> rowsInline = new ArrayList<>();
-//
-//// создаем список с кнопками для первого ряда
-//        List<InlineKeyboardButton> rowInline1 = new ArrayList<>();
-//
-//// создаем первую кнопку для в ряду
-//        InlineKeyboardButton inlineKeyboardButton1 = new InlineKeyboardButton();
-//
-//// устанавливаем параметр текста на кнопке
-//        inlineKeyboardButton1.setText("Кошки");
-//
-//// устанавливаем параметр callback_data
-//        inlineKeyboardButton1.setCallbackData("/cats");
-//
-//
-//        // создаем по аналогии вторую кнопку в ряду
-//        InlineKeyboardButton inlineKeyboardButton2 = new InlineKeyboardButton();
-//        inlineKeyboardButton2.setText("Собаки");
-//        inlineKeyboardButton2.setCallbackData("/dogs");
-//
-//// добавляем кнопки в первый ряд в том порядке,
-//// какой нам необходим. В рассматриваемом случае ряд будет содержать 2 кнопки,
-//// размер которых будет одинаково пропорционально растянут по ширине сообщения,
-//// под которым клавиатура располагается
-//        rowInline1.add(inlineKeyboardButton1);
-//        rowInline1.add(inlineKeyboardButton2);
-//
-//
-//
-//        return message;
-//    }
+        var query1Button = new InlineKeyboardButton();
+        query1Button.setText("Правила знакомства с животным до того, как забрать его из приюта");
+        query1Button.setCallbackData("query1_button");
 
-//    public int process(List<Update> updates) {
-//        updates.forEach(update -> {
-//            logger.info("Processing update: {}", update);
-//                    if (update.message().text().equals("/start")) {
-//                        SendMessage message = new SendMessage(update.message().chat().id(), "Hi");
-//                        telegramBot.execute(message);
-//                    }
-////            takeMassages(updates);
-//
-//
-//        });
-//        return UpdatesListener.CONFIRMED_UPDATES_ALL;
-//    }
+        var query2Button = new InlineKeyboardButton();
+        query2Button.setText("Список документов, необходимых для того, чтобы взять животное из приюта");
+        query2Button.setCallbackData("query2_button");
 
-//    public int takeMassages(List<Update> updates) {
-//        List<List<InlineKeyboardButton>> buttons = new ArrayList<>();
-//        Arrays.asList(
-//                InlineKeyboardButton.builder().text("правила знакомства с животным до того, как забрать его из приюта")
-//                        .callbackData("вот информация по выбору 1").build(),
-//                InlineKeyboardButton.builder().text("список документов, необходимых для того, чтобы взять животное из приюта")
-//                        .callbackData("вот информация по выбору 2").build(),
-//                InlineKeyboardButton.builder().text("список рекомендаций по транспортировке животного")
-//                        .callbackData("вот информация по выбору 3"),
-//                InlineKeyboardButton.builder().text(" выдать список рекомендаций по транспортировке животного")
-//                        .callbackData("вот информация по выбору 4").build(),
-//                InlineKeyboardButton.builder().text("выдать список рекомендаций по обустройству дома для щенка/котенка.")
-//                        .callbackData("вот информация по выбору 5").build(),
-//                InlineKeyboardButton.builder().text("выдать список рекомендаций по обустройству дома для взрослого животного. ")
-//                        .callbackData("вот информация по выбору 6"),
-//                InlineKeyboardButton.builder().text("выдать список рекомендаций по обустройству дома для животного с ограниченными возможностями " +
-//                                "(зрение, передвижение). ")
-//                        .callbackData("вот информация по выбору 7").build(),
-//                InlineKeyboardButton.builder().text("выдать список рекомендаций по обустройству дома для животного с ограниченными возможностями " +
-//                                "(зрение, передвижение). ")
-//                        .callbackData("вот информация по выбору 8").build(),
-//                InlineKeyboardButton.builder().text("выдать рекомендации по проверенным кинологам для дальнейшего обращения к ним" +
-//                                " (неактуально для кошачьего приюта, реализовать только для приюта для собак).")
-//                        .callbackData("вот информация по выбору 9"),
-//                InlineKeyboardButton.builder().text("выдать список причин, почему могут отказать и не дать забрать собаку из приюта.  ")
-//                        .callbackData("вот информация по выбору 10").build(),
-//                InlineKeyboardButton.builder().text("принять и записать контактные данные для связи")
-//                        .callbackData("вот информация по выбору 11").build()
-//                );//Если бот не может ответить на вопросы клиента, то можно позвать волонтера.
-//
-//        return UpdatesListener.CONFIRMED_UPDATES_ALL;
-//        }
-//
+        var query3Button = new InlineKeyboardButton();
+        query3Button.setText("Список рекомендаций по транспортировке животного");
+        query3Button.setCallbackData("query_button");
+
+        var query4Button = new InlineKeyboardButton();
+        query4Button.setText("выдать список рекомендаций по транспортировке животного");
+        query4Button.setCallbackData("query4_button");
+
+        rowInLine.add(query1Button);
+        rowInLine.add(query2Button);
+        rowInLine.add(query3Button);
+        rowInLine.add(query4Button);
+        rowsInLine.add(rowInLine);
+        markup.setKeyboard(rowsInLine);
+        message.setReplyMarkup(markup);
+
+        try {
+            execute(message);
+        } catch (TelegramApiException e) {
+//            logger error("Error occurred: " + e.getMessage());
+        }
+
+
+    }
     }
 
