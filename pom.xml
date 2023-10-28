@@ -12,8 +12,8 @@
 	<artifactId>TGBotListTast</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>TGBotListTast</name>
-	<description>TGBotListTast</description>
+	<name>TelegramBotForDevPro</name>
+	<description>TelegramBotDevPro</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
