@@ -3,12 +3,18 @@ package com.example.TelegramBotForDevPro.components;
 import com.example.TelegramBotForDevPro.configuration.TelegramBotConfiguration;
 import com.example.TelegramBotForDevPro.service.NotificationService;
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
+import org.hibernate.engine.spi.ManagedEntity;
 import org.springframework.expression.ParseException;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.Message;
+import org.telegram.telegrambots.meta.api.objects.MessageEntity;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+
+import java.util.Optional;
 
 
 @Component
@@ -18,8 +24,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     private final TelegramBotConfiguration telegramBotConfiguration;
 
-    final static String taskInfoTest = "Чтобы создать напоминания  введите дату и время в формате: ДД.ММ.ГГГГ ЧЧ:ММ текст задачи." + "\n"
-            + "Пример напоминания: 01.01.2022 20:00 Сделать домашнюю работу!";
+    final static String taskInfoTest = " выбери о каком приюте хочешь узнать ";
 
 
 
@@ -34,7 +39,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     private void startCommandReceived(Long chatId, String name) {
         String answer = "Привет, " + name + ", приятно познакомиться!" + "\n"
-                + "Я напоминаю вам о ваших делах." + "\n " + taskInfoTest;
+                + "Я рассказываю о приютах с кошками и собаками " + "\n " + taskInfoTest;
         sendMessage(chatId, answer);
     }
     public void sendMessage(Long chatId, String textToSend) {
@@ -48,7 +53,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         }
     }
 
-    @Override
+    /*@Override
     public void onUpdateReceived(Update update) {
         String currency = "";
         if (update.hasMessage() && update.getMessage().hasText()) {
@@ -72,7 +77,33 @@ public class TelegramBot extends TelegramLongPollingBot {
                     }
             }
         }
+    }*/
+    @Override
+    @SneakyThrows
+    public void onUpdateReceived(Update update){
+        if (update.hasMessage()){
+            handleMessage(update.getMessage());
+        }
+    }
+    @SneakyThrows
+    private void handleMessage(Message message){
+        if(message.hasText() && message.hasEntities()) {
+            Optional<MessageEntity> commandEntity =
+                    message.getEntities().stream().filter(e -> "bot_command".equals(e.getType())).findFirst();
+            if (commandEntity.isPresent())  {
+                String command = message.getText().substring(commandEntity.get().getOffset(), commandEntity.get().getLength());
+                switch (command)    {
+                    case "/set_cats":
+                        execute(SendMessage.builder()
+                                .text("пожалуйста выберите животное")
+                                .chatId(message.getChatId().toString())
+                                .build());
+                        return;
+                }
+            }
 
+        }
 
     }
+
 }
