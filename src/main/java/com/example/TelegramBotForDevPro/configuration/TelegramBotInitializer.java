@@ -1,5 +1,6 @@
 package com.example.TelegramBotForDevPro.configuration;
 
+import com.example.TelegramBotForDevPro.components.TelegramBot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
