@@ -5,11 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
-@EnableScheduling
 public class TelegramBotForDevProApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(TelegramBotForDevProApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(TelegramBotForDevProApplication.class, args);
+    }
 
 }
