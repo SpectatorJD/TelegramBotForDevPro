@@ -1,4 +1,5 @@
-package com.example.TelegramBotForDevPro.service;
+package com.example.TelegramBotForDevPro.buttons;
+
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,10 +13,9 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.util.ArrayList;
 import java.util.List;
-
 @Component
-public class Options extends TelegramLongPollingBot {
-    private Logger logger = LoggerFactory.getLogger(AnimalShelter.class);
+public class Option1 extends TelegramLongPollingBot {
+    private Logger logger = LoggerFactory.getLogger(Option1.class);
 
     @Override
     public String getBotUsername() {
@@ -39,7 +39,8 @@ public class Options extends TelegramLongPollingBot {
 
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowsInLine = new ArrayList<>();
-        List<InlineKeyboardButton> rowInLine = new ArrayList<>();
+        List<InlineKeyboardButton> rowInLine1 = new ArrayList<>();
+        List<InlineKeyboardButton> rowInLine2 = new ArrayList<>();
 
         var catButton = new InlineKeyboardButton();
         catButton.setText("Cat");
@@ -49,9 +50,10 @@ public class Options extends TelegramLongPollingBot {
         dogButton.setText("Dog");
         dogButton.setCallbackData("dog_button");
 
-        rowInLine.add(catButton);
-        rowInLine.add(dogButton);
-        rowsInLine.add(rowInLine);
+        rowInLine1.add(catButton);
+        rowInLine2.add(dogButton);
+        rowsInLine.add(rowInLine1);
+        rowsInLine.add(rowInLine2);
         markup.setKeyboard(rowsInLine);
         message.setReplyMarkup(markup);
 
@@ -105,45 +107,5 @@ public class Options extends TelegramLongPollingBot {
         }
 
 
-    }
-
-    public void register3() {
-        SendMessage message = new SendMessage();
-        message.getChatId();
-        message.setText("choose, please");
-
-        InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
-        List<List<InlineKeyboardButton>> rowsInLine = new ArrayList<>();
-        List<InlineKeyboardButton> rowInLine = new ArrayList<>();
-
-        var query1Button = new InlineKeyboardButton();
-        query1Button.setText("Правила знакомства с животным до того, как забрать его из приюта");
-        query1Button.setCallbackData("query1_button");
-
-        var query2Button = new InlineKeyboardButton();
-        query2Button.setText("Список документов, необходимых для того, чтобы взять животное из приюта");
-        query2Button.setCallbackData("query2_button");
-
-        var query3Button = new InlineKeyboardButton();
-        query3Button.setText("Список рекомендаций по транспортировке животного");
-        query3Button.setCallbackData("query_button");
-
-        var query4Button = new InlineKeyboardButton();
-        query4Button.setText("выдать список рекомендаций по транспортировке животного");
-        query4Button.setCallbackData("query4_button");
-
-        rowInLine.add(query1Button);
-        rowInLine.add(query2Button);
-        rowInLine.add(query3Button);
-        rowInLine.add(query4Button);
-        rowsInLine.add(rowInLine);
-        markup.setKeyboard(rowsInLine);
-        message.setReplyMarkup(markup);
-
-        try {
-            execute(message);
-        } catch (TelegramApiException e) {
-            logger.error("Error occurred: " + e.getMessage());
-        }
     }
 }
