@@ -32,9 +32,9 @@ public class Option1 extends TelegramLongPollingBot {
 
     }
 
-    public void register1() {
+    public void register1(Long chatId) {
         SendMessage message = new SendMessage();
-        message.getChatId();
+        message.setChatId(String.valueOf(chatId));
         message.setText("choose, please");
 
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
@@ -65,9 +65,9 @@ public class Option1 extends TelegramLongPollingBot {
     }
 
 
-    public void register2() {
+    public void register2(long chatId) {
         SendMessage message = new SendMessage();
-        message.getChatId();
+        message.setChatId(String.valueOf(chatId));
         message.setText("choose, please");
 
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup();

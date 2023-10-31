@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.objects.Message;
+import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
@@ -49,39 +49,64 @@ public class AnimalShelterForCats extends TelegramLongPollingBot {
         return "6695921384:AAH9jQ9X0boP8_qZKGVsdLK381Fn7o2kKkc";
     }
 
+
+    private void sendText(Long who, String hail) {
+        SendMessage sendMessage = SendMessage.builder()
+                .chatId(who.toString())
+                .text(hail).build();
+        try {
+            execute(sendMessage);
+        } catch (TelegramApiException e) {
+            throw new RuntimeException();
+        }
+    }
     @Override
     public void onUpdateReceived(Update update) {
-        if (update.hasMessage()) {
-            Message message = update.getMessage();
+        long messageId = update.getCallbackQuery().getMessage().getMessageId();
+        long chatId = update.getCallbackQuery().getMessage().getChatId();
+//        Message message = update.getMessage();
+        var message = update.getMessage();
+        var userId = message.getFrom().getId();
+//        if (update.hasMessage() && update.getMessage().getText().equals("/start")) {
+//            try {
+//                execute(
+//                        SendMessage
+//                                .builder()
+//                                .chatId(message.getChatId().toString())
+//                                .text("Hi")
+//                                .build());
+//            } catch (TelegramApiException e) {
+//                throw new RuntimeException(e);
+//            }
+        if (message.equals("/start")) {
+            sendText(userId, "hi");
+            option1.register1(chatId);
+        }
 
-                if (update.getMessage().getText().equals("/start")) {
-                    try {
-                        execute(
-                                SendMessage
-                                        .builder()
-                                        .chatId(message.getChatId().toString())
-                                        .text("Hi")
-                                        .build());
-                    } catch (TelegramApiException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
 
-            option1.register1();
             if (update.hasCallbackQuery()) {
                 String callbackData = update.getCallbackQuery().getData();
-                long messageId = update.getCallbackQuery().getMessage().getMessageId();
-                long chatId = update.getCallbackQuery().getMessage().getChatId();
-
                 switch (callbackData) {
                     case ("cat_button") -> {
-                        option1.register2();
+                        EditMessageText messageText = new EditMessageText();
+                        messageText.setChatId(String.valueOf(chatId));
+                        messageText.setText("choose");
+                        messageText.setMessageId((int) messageId);
+                        try {
+                            execute(messageText);
+                        } catch (TelegramApiException e) {
+                            logger.info("Processing update: {}", update);
+                        }
+                        option1.register2(chatId);
+
                     }
                     case ("head3_button")-> {
-                        option2.register3();
+                        option2.register3(chatId);
                     }
                     case "query1_button" -> {
-                        SendMessage sendMessage = new SendMessage(String.valueOf(messageId), "вот информация для котов по выбору 1");
+                        SendMessage sendMessage = new SendMessage(String.valueOf(chatId), "вот информация по коту по выбору 1");
+                        //
+                        //
                         try {
                             execute(sendMessage);
                         } catch (TelegramApiException e) {
@@ -89,7 +114,7 @@ public class AnimalShelterForCats extends TelegramLongPollingBot {
                         }
                     }
                     case "query2_button" -> {
-                        SendMessage sendMessage = new SendMessage(String.valueOf(messageId), "вот информация для котов по выбору 2");
+                        SendMessage sendMessage = new SendMessage(String.valueOf(messageId), "вот информация по коту по выбору 2");
                         try {
                             execute(sendMessage);
                         } catch (TelegramApiException e) {
@@ -97,7 +122,7 @@ public class AnimalShelterForCats extends TelegramLongPollingBot {
                         }
                     }
                     case "query3_button" -> {
-                        SendMessage sendMessage = new SendMessage(String.valueOf(messageId), "вот информация для котов по выбору 3");
+                        SendMessage sendMessage = new SendMessage(String.valueOf(messageId), "вот информация по коту по выбору 3");
                         try {
                             execute(sendMessage);
                         } catch (TelegramApiException e) {
@@ -105,7 +130,7 @@ public class AnimalShelterForCats extends TelegramLongPollingBot {
                         }
                     }
                     case "query4_button" -> {
-                        SendMessage sendMessage = new SendMessage(String.valueOf(messageId), "вот информация для котов по выбору 4");
+                        SendMessage sendMessage = new SendMessage(String.valueOf(messageId), "вот информация по коту по выбору 4");
                         try {
                             execute(sendMessage);
                         } catch (TelegramApiException e) {
@@ -113,7 +138,7 @@ public class AnimalShelterForCats extends TelegramLongPollingBot {
                         }
                     }
                     case "query5_2_button" -> {
-                        SendMessage sendMessage = new SendMessage(String.valueOf(messageId), "вот информация для котов по выбору 5.2");
+                        SendMessage sendMessage = new SendMessage(String.valueOf(chatId), "вот информация по коту по выбору 5.2");
                         try {
                             execute(sendMessage);
                         } catch (TelegramApiException e) {
@@ -121,7 +146,7 @@ public class AnimalShelterForCats extends TelegramLongPollingBot {
                         }
                     }
                     case "query6_button" -> {
-                        SendMessage sendMessage = new SendMessage(String.valueOf(messageId), "вот информация для котов по выбору 6");
+                        SendMessage sendMessage = new SendMessage(String.valueOf(messageId), "вот информация по коту по выбору 6");
                         try {
                             execute(sendMessage);
                         } catch (TelegramApiException e) {
@@ -129,7 +154,7 @@ public class AnimalShelterForCats extends TelegramLongPollingBot {
                         }
                     }
                     case "query7_button" -> {
-                        SendMessage sendMessage = new SendMessage(String.valueOf(messageId), "вот информация для котов по выбору 7");
+                        SendMessage sendMessage = new SendMessage(String.valueOf(messageId), "вот информация по коту по выбору 7");
                         try {
                             execute(sendMessage);
                         } catch (TelegramApiException e) {
@@ -137,7 +162,7 @@ public class AnimalShelterForCats extends TelegramLongPollingBot {
                         }
                     }
                     case "query11_button" -> {
-                        SendMessage sendMessage = new SendMessage(String.valueOf(messageId), "вот информация для котов по выбору 11");
+                        SendMessage sendMessage = new SendMessage(String.valueOf(messageId), "вот информация по коту по выбору 11");
                         try {
                             execute(sendMessage);
                         } catch (TelegramApiException e) {
@@ -149,5 +174,5 @@ public class AnimalShelterForCats extends TelegramLongPollingBot {
             }
         }
     }
-}
+
 

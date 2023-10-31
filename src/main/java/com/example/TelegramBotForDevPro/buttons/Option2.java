@@ -33,9 +33,9 @@ public class Option2 extends TelegramLongPollingBot {
 
     }
 
-    public void register3() {
+    public void register3(long chatId) {
         SendMessage message = new SendMessage();
-        message.getChatId();
+        message.setChatId(String.valueOf(chatId));;
         message.setText("choose, please");
 
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
