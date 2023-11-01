@@ -3,7 +3,7 @@ package com.example.TelegramBotForDevPro.service;
 //import com.example.TelegramBotForDevPro.repository.AnimalShelterRepository;
 import com.example.TelegramBotForDevPro.buttons.Option1;
 import com.example.TelegramBotForDevPro.buttons.Option2;
-import com.pengrad.telegrambot.TelegramBot;
+//import com.pengrad.telegrambot.TelegramBot;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +36,7 @@ public class AnimalShelterForCats extends TelegramLongPollingBot {
 //    }
 
     @Autowired
-    private TelegramBot telegramBot;
+//    private TelegramBot telegramBot;
 
 
     @Override
@@ -67,19 +67,8 @@ public class AnimalShelterForCats extends TelegramLongPollingBot {
 //        Message message = update.getMessage();
         var message = update.getMessage();
         var userId = message.getFrom().getId();
-//        if (update.hasMessage() && update.getMessage().getText().equals("/start")) {
-//            try {
-//                execute(
-//                        SendMessage
-//                                .builder()
-//                                .chatId(message.getChatId().toString())
-//                                .text("Hi")
-//                                .build());
-//            } catch (TelegramApiException e) {
-//                throw new RuntimeException(e);
-//            }
-        if (message.equals("/start")) {
-            sendText(userId, "hi");
+        if (update.hasMessage()) {
+//
             option1.register1(chatId);
         }
 

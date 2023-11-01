@@ -2,7 +2,7 @@ package com.example.TelegramBotForDevPro.service;
 
 import com.example.TelegramBotForDevPro.buttons.Option1;
 import com.example.TelegramBotForDevPro.buttons.Option2;
-import com.pengrad.telegrambot.TelegramBot;
+//import com.pengrad.telegrambot.TelegramBot;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +35,7 @@ public class AnimalShelterForDogs extends TelegramLongPollingBot {
 //    }
 
     @Autowired
-    private TelegramBot telegramBot;
+//    private TelegramBot telegramBot;
 
 
     @Override
@@ -80,7 +80,7 @@ public class AnimalShelterForDogs extends TelegramLongPollingBot {
 
                     }
                     case "query1_button" -> {
-                        SendMessage sendMessage = new SendMessage(String.valueOf(messageId), "вот информация по собаке по выбору 1");
+                        SendMessage sendMessage = new SendMessage(String.valueOf(chatId), "вот информация по собаке по выбору 1");
                         try {
                             execute(sendMessage);
                         } catch (TelegramApiException e) {
