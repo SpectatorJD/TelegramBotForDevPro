@@ -3,7 +3,7 @@ package com.example.TelegramBotForDevPro.service;
 //import com.example.TelegramBotForDevPro.repository.AnimalShelterRepository;
 import com.example.TelegramBotForDevPro.buttons.Option1;
 import com.example.TelegramBotForDevPro.buttons.Option2;
-//import com.pengrad.telegrambot.TelegramBot;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +11,10 @@ import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
+import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import org.telegram.telegrambots.meta.generics.TelegramBot;
 
 @Service
 public class AnimalShelterForCats extends TelegramLongPollingBot {
@@ -35,7 +37,7 @@ public class AnimalShelterForCats extends TelegramLongPollingBot {
 //        this.animalShelterRepository = animalShelterRepository;
 //    }
 
-    @Autowired
+//    @Autowired
 //    private TelegramBot telegramBot;
 
 
@@ -64,14 +66,25 @@ public class AnimalShelterForCats extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         long messageId = update.getCallbackQuery().getMessage().getMessageId();
         long chatId = update.getCallbackQuery().getMessage().getChatId();
-//        Message message = update.getMessage();
-        var message = update.getMessage();
-        var userId = message.getFrom().getId();
-        if (update.hasMessage()) {
-//
-            option1.register1(chatId);
+        Message message = update.getMessage();
+//        var message = update.getMessage();
+//        var userId = message.getFrom().getId();
+//        if (update.hasMessage()) {
+////
+//            option1.register1(chatId);
+        if (update.hasMessage() && update.getMessage().getText().equals("/start")) {
+            try {
+                execute(
+                        SendMessage
+                                .builder()
+                                .chatId(message.getChatId().toString())
+                                .text("Hi")
+                                .build());
+            } catch (TelegramApiException e) {
+                throw new RuntimeException(e);
+            }
         }
-
+        option1.register1(chatId);
 
             if (update.hasCallbackQuery()) {
                 String callbackData = update.getCallbackQuery().getData();
@@ -159,7 +172,6 @@ public class AnimalShelterForCats extends TelegramLongPollingBot {
                         }
                     }
                 }
-
             }
         }
     }

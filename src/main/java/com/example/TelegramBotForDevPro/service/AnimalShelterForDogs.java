@@ -2,7 +2,7 @@ package com.example.TelegramBotForDevPro.service;
 
 import com.example.TelegramBotForDevPro.buttons.Option1;
 import com.example.TelegramBotForDevPro.buttons.Option2;
-//import com.pengrad.telegrambot.TelegramBot;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +12,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import org.telegram.telegrambots.meta.generics.TelegramBot;
 
 @Service
 public class AnimalShelterForDogs extends TelegramLongPollingBot {
@@ -34,7 +35,7 @@ public class AnimalShelterForDogs extends TelegramLongPollingBot {
 //        this.animalShelterRepository = animalShelterRepository;
 //    }
 
-    @Autowired
+//    @Autowired
 //    private TelegramBot telegramBot;
 
 
