@@ -1,8 +1,5 @@
 package com.example.TelegramBotForDevPro.model;
 
-//import jakarta.persistence.Entity;
-//import jakarta.persistence.Id;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
