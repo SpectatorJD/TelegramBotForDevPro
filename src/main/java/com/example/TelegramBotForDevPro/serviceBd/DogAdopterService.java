@@ -20,7 +20,7 @@ public class DogAdopterService {
 
 
     //    adds new dog adopter to the db
-    public DogAdopter AddDogAdopter(DogAdopter dogAdopter) {
+    public DogAdopter addDogAdopter(DogAdopter dogAdopter) {
         logger.debug("requesting write dog adopter: {}", dogAdopter);
         return dogAdopterRepository.save(dogAdopter);
     }
@@ -39,7 +39,7 @@ public class DogAdopterService {
     }
 
     //    deletes dog adopter from the db
-    public void DeleteDogAdopter(Long id) {
+    public void deleteDogAdopter(Long id) {
         logger.debug("requesting delete dog adopter by id: {}", id);
         dogAdopterRepository.deleteById(id);
     }

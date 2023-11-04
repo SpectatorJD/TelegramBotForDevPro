@@ -20,7 +20,7 @@ public class CatAdopterService {
 
 
     //    adds new catAdopter to the db
-    public CatAdopter AddCatAdopter(CatAdopter catAdopter) {
+    public CatAdopter addCatAdopter(CatAdopter catAdopter) {
         logger.debug("requesting write cat adopter: {}", catAdopter);
         return catAdopterRepository.save(catAdopter);
     }
@@ -39,7 +39,7 @@ public class CatAdopterService {
     }
 
     //    deletes catAdopter from the db
-    public void DeleteCatAdopter(Long id) {
+    public void deleteCatAdopter(Long id) {
         logger.debug("requesting delete cat adopter by id: {}", id);
         catAdopterRepository.deleteById(id);
     }

@@ -20,7 +20,7 @@ public class VolunteerService {
 
 
     //    adds new volunteer to the db
-    public Volunteer AddVolunteer(Volunteer volunteer) {
+    public Volunteer addVolunteer(Volunteer volunteer) {
         logger.debug("requesting write volunteer: {}", volunteer);
         return volunteerRepository.save(volunteer);
     }
@@ -39,7 +39,7 @@ public class VolunteerService {
     }
 
     //    deletes volunteer from the db
-    public void DeleteVolunteer(Long id) {
+    public void deleteVolunteer(Long id) {
         logger.debug("requesting delete volunteer by id: {}", id);
         volunteerRepository.deleteById(id);
     }

@@ -20,7 +20,7 @@ public class DogService {
 
 
     //    adds new dog to the db
-    public Dog AddDog(Dog dog) {
+    public Dog addDog(Dog dog) {
         logger.debug("requesting write dog: {}", dog);
         return dogRepository.save(dog);
     }
@@ -39,7 +39,7 @@ public class DogService {
     }
 
     //    deletes dog from the db
-    public void DeleteDog(Long id) {
+    public void deleteDog(Long id) {
         logger.debug("requesting delete dog by id: {}", id);
         dogRepository.deleteById(id);
     }

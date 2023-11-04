@@ -20,7 +20,7 @@ public class CatReportService {
 
 
     //    adds new cat report to the db
-    public CatReport AddCatReport(CatReport catReport) {
+    public CatReport addCatReport(CatReport catReport) {
         logger.debug("requesting write cat report: {}", catReport);
         return catReportRepository.save(catReport);
     }
@@ -39,7 +39,7 @@ public class CatReportService {
     }
 
     //    deletes cat report from the db
-    public void DeleteCatReport(Long id) {
+    public void deleteCatReport(Long id) {
         logger.debug("requesting delete cat report by id: {}", id);
         catReportRepository.deleteById(id);
     }

@@ -20,7 +20,7 @@ public class DogReportService {
 
 
     //    adds new dog report to the db
-    public DogReport AddDogReport(DogReport dogReport) {
+    public DogReport addDogReport(DogReport dogReport) {
         logger.debug("requesting write dog report: {}", dogReport);
         return dogReportRepository.save(dogReport);
     }
@@ -39,12 +39,12 @@ public class DogReportService {
     }
 
     //    deletes dog report from the db
-    public void DeleteDogReport(Long id) {
+    public void deleteDogReport(Long id) {
         logger.debug("requesting delete dog report by id: {}", id);
         dogReportRepository.deleteById(id);
     }
     //    finds all dog reports from the db
-    public Collection<DogReport> findAllDogReport() {
+    public Collection<DogReport> findAllDogReports() {
         logger.debug("requesting find all dog reports ");
         return dogReportRepository.findAll();
     }

@@ -16,11 +16,13 @@ public class Cat {
     private long id;
     private String name;
     private String breed;
+    private String color;
 
-    public Cat(long id, String name, String breed) {
+    public Cat(long id, String name, String breed, String color) {
         this.id = id;
         this.name = name;
         this.breed = breed;
+        this.color = color;
     }
 
     public long getId() {
@@ -47,17 +49,25 @@ public class Cat {
         this.breed = breed;
     }
 
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cat cat = (Cat) o;
-        return id == cat.id && Objects.equals(name, cat.name) && Objects.equals(breed, cat.breed);
+        return id == cat.id && Objects.equals(name, cat.name) && Objects.equals(breed, cat.breed) && Objects.equals(color, cat.color);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, breed);
+        return Objects.hash(id, name, breed, color);
     }
 
     @Override
@@ -66,6 +76,7 @@ public class Cat {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", breed='" + breed + '\'' +
+                ", color='" + color + '\'' +
                 '}';
     }
 }

@@ -2,9 +2,7 @@ package com.example.TelegramBotForDevPro.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 
-import java.time.LocalDateTime;
 import java.util.Objects;
 @Entity(name = "volunteer")
 public class Volunteer {
