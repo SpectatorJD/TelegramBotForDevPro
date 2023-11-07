@@ -2,8 +2,14 @@ package com.example.TelegramBotForDevPro.controllerBd;
 
 import com.example.TelegramBotForDevPro.model.DogReport;
 import com.example.TelegramBotForDevPro.serviceBd.DogReportService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,13 +25,41 @@ public class DogReportController {
         this.dogReportService = dogReportService;
     }
 
-    //    add new Dog report to the db
+        @Operation(
+            summary = "Добавление отчета в БД",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Добавленный отчет",
+                            content = @Content(
+                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
+                                    schema = @Schema(implementation = DogReport.class)
+                            )
+                    )
+            }
+    )
     @PostMapping
     public DogReport addDogReport(@RequestBody DogReport DogReport) {
         return dogReportService.addDogReport(DogReport);
     }
 
-    //    find dog report by id from the db
+    @Operation(
+            summary = "Поиск отчета по id.",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Информация о найденном отчете",
+                            content = @Content(
+                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
+                                    schema = @Schema(implementation = DogReport.class)
+                            )
+                    ),
+                    @ApiResponse(
+                            responseCode = "404",
+                            description = "Отчет с данным id не найден"
+                    )
+            }
+    )
     @GetMapping("{id}")
     public ResponseEntity<DogReport> findDogReport(@PathVariable Long id) {
         DogReport DogReport = dogReportService.findDogReport(id);
@@ -35,7 +69,23 @@ public class DogReportController {
         return ResponseEntity.ok(DogReport);
     }
 
-    //    edit dog report at the db
+    @Operation(
+            summary = "Редактирование отчета в БД",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Измененный отчет",
+                            content = @Content(
+                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
+                                    schema = @Schema(implementation = DogReport.class)
+                            )
+                    ),
+                    @ApiResponse(
+                            responseCode = "404",
+                            description = "Отчет не найден"
+                    )
+            }
+    )
     @PutMapping
     public ResponseEntity<DogReport> updateDogReport(@RequestBody DogReport DogReport) {
         DogReport updatedCat = dogReportService.updateDogReport(DogReport);
@@ -45,14 +95,39 @@ public class DogReportController {
         return ResponseEntity.ok(DogReport);
     }
 
-    //    delete dog report from the db
+    @Operation(
+            summary = "Удаление отчета по id.",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Отчет успешно удален"
+
+                    ),
+                    @ApiResponse(
+                            responseCode = "404",
+                            description = "Отчет с данным id не найден"
+                    )
+            }
+    )
     @DeleteMapping("{id}")
     public ResponseEntity<DogReport> deleteDogReport(@PathVariable Long id) {
         dogReportService.deleteDogReport(id);
         return ResponseEntity.ok().build();
     }
 
-    //    finds all dog reports from the db
+    @Operation(
+            summary = "Получить список всех отчетов",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Список всех отчетов",
+                            content = @Content(
+                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
+                                    array = @ArraySchema(schema = @Schema(implementation = DogReport.class))
+                            )
+                    )
+            }
+    )
     @GetMapping("/dog_reports")
     public ResponseEntity<Collection<DogReport>> getAllDogReports() {
         Collection<DogReport> dogReports = dogReportService.findAllDogReports();

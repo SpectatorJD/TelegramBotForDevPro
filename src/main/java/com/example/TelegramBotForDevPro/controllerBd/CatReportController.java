@@ -2,8 +2,14 @@ package com.example.TelegramBotForDevPro.controllerBd;
 
 import com.example.TelegramBotForDevPro.model.CatReport;
 import com.example.TelegramBotForDevPro.serviceBd.CatReportService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +31,23 @@ public class CatReportController {
         return catReportService.addCatReport(catReport);
     }
 
-    //    find cat report by id from the db
+    @Operation(
+            summary = "Поиск отчета по id.",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Информация о найденном отчете",
+                            content = @Content(
+                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
+                                    schema = @Schema(implementation = CatReport.class)
+                            )
+                    ),
+                    @ApiResponse(
+                            responseCode = "404",
+                            description = "Отчет с данным id не найден"
+                    )
+            }
+    )
     @GetMapping("{id}")
     public ResponseEntity<CatReport> findCatReport(@PathVariable Long id) {
         CatReport catReport = catReportService.findCatReport(id);
@@ -35,7 +57,23 @@ public class CatReportController {
         return ResponseEntity.ok(catReport);
     }
 
-    //    edit cat report at the db
+    @Operation(
+            summary = "Редактирование отчета в БД",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Измененный отчет",
+                            content = @Content(
+                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
+                                    schema = @Schema(implementation = CatReport.class)
+                            )
+                    ),
+                    @ApiResponse(
+                            responseCode = "404",
+                            description = "Отчет не найден"
+                    )
+            }
+    )
     @PutMapping
     public ResponseEntity<CatReport> updateCatReport(@RequestBody CatReport catReport) {
         CatReport updatedCat = catReportService.updateCatReport(catReport);
@@ -45,14 +83,39 @@ public class CatReportController {
         return ResponseEntity.ok(catReport);
     }
 
-    //    delete cat report from the db
+    @Operation(
+            summary = "Удаление отчета по id.",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Отчет успешно удален"
+
+                    ),
+                    @ApiResponse(
+                            responseCode = "404",
+                            description = "Отчет с данным id не найден"
+                    )
+            }
+    )
     @DeleteMapping("{id}")
     public ResponseEntity<CatReport> deleteCatReport(@PathVariable Long id) {
         catReportService.deleteCatReport(id);
         return ResponseEntity.ok().build();
     }
 
-    //    finds all cat reports from the db
+    @Operation(
+            summary = "Получить список всех отчетов",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Список всех отчетов",
+                            content = @Content(
+                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
+                                    array = @ArraySchema(schema = @Schema(implementation = CatReport.class))
+                            )
+                    )
+            }
+    )
     @GetMapping("/cat_reports")
     public ResponseEntity<Collection<CatReport>> getAllCatReports() {
         Collection<CatReport> catReports = catReportService.findAllCatReports();

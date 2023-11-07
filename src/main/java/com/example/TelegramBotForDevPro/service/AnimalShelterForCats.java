@@ -4,6 +4,7 @@ package com.example.TelegramBotForDevPro.service;
 import com.example.TelegramBotForDevPro.buttons.Option1;
 import com.example.TelegramBotForDevPro.buttons.Option2;
 
+import com.example.TelegramBotForDevPro.model.CatReport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,6 +106,14 @@ public class AnimalShelterForCats extends TelegramLongPollingBot {
                     case ("head3_button")-> {
                         option2.register3(chatId);
                     }
+//                    case ("head4_button")->{
+//                        if(update.message().photo().lenght>0){
+//                            System.out.println(update.toString());
+//                            CatReport catReport = new CatReport();
+//                            catReport.setCatAdopter(update.message().text());
+//                            GetFileResponse fileResponse = bot.exsecute
+//                        }
+//                    }
                     case "query1_button" -> {
                         SendMessage sendMessage = new SendMessage(String.valueOf(chatId), "вот информация по коту по выбору 1");
                         //
@@ -171,6 +180,7 @@ public class AnimalShelterForCats extends TelegramLongPollingBot {
                             logger.info("Processing update: {}", update);
                         }
                     }
+//                    default ->
                 }
             }
         }
