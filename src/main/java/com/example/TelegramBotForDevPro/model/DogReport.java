@@ -1,20 +1,22 @@
 package com.example.TelegramBotForDevPro.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Objects;
 
+@Getter
+@Setter
 @Entity(name = "report_about_Dog")
 public class DogReport {
         public DogReport() {
         }
 
         @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         private long id;
         private byte[] photo;
         private String ration;
@@ -33,62 +35,6 @@ public class DogReport {
                 this.behavior = behavior;
                 this.dogAdopter = dogAdopter;
                 this.lastMessage = lastMessage;
-        }
-
-        public LocalDate getLastMessage() {
-                return lastMessage;
-        }
-
-        public void setLastMessage(LocalDate lastMessage) {
-                this.lastMessage = lastMessage;
-        }
-
-        public long getId() {
-                return id;
-        }
-
-        public void setId(long id) {
-                this.id = id;
-        }
-
-        public byte[] getPhoto() {
-                return photo;
-        }
-
-        public void setPhoto(byte[] photo) {
-                this.photo = photo;
-        }
-
-        public String getRation() {
-                return ration;
-        }
-
-        public void setRation(String ration) {
-                this.ration = ration;
-        }
-
-        public String getHabits() {
-                return habits;
-        }
-
-        public void setHabits(String habits) {
-                this.habits = habits;
-        }
-
-        public String getBehavior() {
-                return behavior;
-        }
-
-        public void setBehavior(String behavior) {
-                this.behavior = behavior;
-        }
-
-        public DogAdopter getDogAdopter() {
-                return dogAdopter;
-        }
-
-        public void setDogAdopter(DogAdopter dogAdopter) {
-                this.dogAdopter = dogAdopter;
         }
 
         @Override

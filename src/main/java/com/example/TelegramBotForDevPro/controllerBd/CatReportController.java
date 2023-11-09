@@ -25,7 +25,19 @@ public class CatReportController {
         this.catReportService = catReportService;
     }
 
-    //    add new cat report to the db
+    @Operation(
+            summary = "Добавление отчета в БД.",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Добавление отчета",
+                            content = @Content(
+                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
+                                    schema = @Schema(implementation = CatReport.class)
+                            )
+                    ),
+            }
+    )
     @PostMapping
     public CatReport addCatReport(@RequestBody CatReport catReport) {
         return catReportService.addCatReport(catReport);

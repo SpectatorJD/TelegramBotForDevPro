@@ -1,15 +1,22 @@
 package com.example.TelegramBotForDevPro.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Objects;
 
+@Getter
+@Setter
 @Entity(name = "cat")
 public class Cat {
     public Cat() {
     }
 @Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
     private String breed;
@@ -19,38 +26,6 @@ public class Cat {
         this.id = id;
         this.name = name;
         this.breed = breed;
-        this.color = color;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getBreed() {
-        return breed;
-    }
-
-    public void setBreed(String breed) {
-        this.breed = breed;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
         this.color = color;
     }
 

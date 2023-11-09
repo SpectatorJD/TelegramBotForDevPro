@@ -1,15 +1,22 @@
 package com.example.TelegramBotForDevPro.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Objects;
+@Getter
+@Setter
 @Entity(name = "volunteer")
 public class Volunteer {
     public Volunteer() {
     }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private long ChatId;
     private String name;
@@ -21,46 +28,6 @@ public class Volunteer {
         ChatId = chatId;
         this.name = name;
         this.phone = phone;
-        this.userName = userName;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public long getChatId() {
-        return ChatId;
-    }
-
-    public void setChatId(long chatId) {
-        ChatId = chatId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
         this.userName = userName;
     }
 

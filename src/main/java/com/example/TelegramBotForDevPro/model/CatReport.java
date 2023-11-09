@@ -1,19 +1,20 @@
 package com.example.TelegramBotForDevPro.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Objects;
-
+@Setter
+@Getter
 @Entity(name = "report_about_cat")
 public class CatReport {
     public CatReport() {
     }
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private byte[] photo;
     private String ration;
@@ -32,62 +33,6 @@ public class CatReport {
         this.behavior = behavior;
         this.catAdopter = catAdopter;
         this.lastMessage = lastMessage;
-    }
-
-    public LocalDate getLastMessage() {
-        return lastMessage;
-    }
-
-    public void setLastMessage(LocalDate lastMessage) {
-        this.lastMessage = lastMessage;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public byte[] getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(byte[] photo) {
-        this.photo = photo;
-    }
-
-    public String getRation() {
-        return ration;
-    }
-
-    public void setRation(String ration) {
-        this.ration = ration;
-    }
-
-    public String getHabits() {
-        return habits;
-    }
-
-    public void setHabits(String habits) {
-        this.habits = habits;
-    }
-
-    public String getBehavior() {
-        return behavior;
-    }
-
-    public void setBehavior(String behavior) {
-        this.behavior = behavior;
-    }
-
-    public CatAdopter getCatAdopter() {
-        return catAdopter;
-    }
-
-    public void setCatAdopter(CatAdopter catAdopter) {
-        this.catAdopter = catAdopter;
     }
 
     @Override
