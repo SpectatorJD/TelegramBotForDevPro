@@ -15,7 +15,6 @@ public class DogAdopter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private long chatId;
     private String name;
     private String phone;
     @OneToOne
@@ -34,22 +33,22 @@ public class DogAdopter {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DogAdopter that = (DogAdopter) o;
-        return id == that.id && chatId == that.chatId && Objects.equals(name, that.name) && Objects.equals(phone, that.phone) && Objects.equals(dog, that.dog);
+        return id == that.id && Objects.equals(name, that.name) && Objects.equals(phone, that.phone) && Objects.equals(dog, that.dog);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, chatId, name, phone, dog);
+        return Objects.hash(id, name, phone, dog);
     }
 
     @Override
     public String toString() {
         return "DogAdopter{" +
                 "id=" + id +
-                ", chatId=" + chatId +
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", dog=" + dog +
                 '}';
     }
+
 }

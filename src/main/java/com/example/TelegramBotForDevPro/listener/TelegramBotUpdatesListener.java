@@ -65,11 +65,12 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
 //                GetFileResponse fileResponse = telegramBot.execute(new GetFile(update.message().photo()[0].fileId()));
 //                String fullPath = telegramBot.getFullFilePath(fileResponse.file());
 //                System.out.println(fullPath);
-                try {
-                        catReportService.downloadReport(updates);
-                        return;
-                } catch (Exception e) {
-                    logger.error((e.getMessage()), e);
+//                try {
+//                        catReportService.downloadReport();
+//                        return;
+//                } catch (Exception e) {
+//                    logger.error((e.getMessage()), e);
+
 
 //                try {
 //                    catReportService.downloadReport.downloadFile(fullPath, "./images", update.message().photo()[0].fileId() + ".jpg");
@@ -78,7 +79,8 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
 //                    catReport.setPhoto(new File("./images/" + update.message().photo()[0].fileId() + ".jpg").getPath());
 //                    CatReport.get(update.message().from().id()).addCatRepository(catReport);
 //                    System.out.println(users.toString());
-                }
+
+//                }
             }
         });
         return UpdatesListener.CONFIRMED_UPDATES_ALL;

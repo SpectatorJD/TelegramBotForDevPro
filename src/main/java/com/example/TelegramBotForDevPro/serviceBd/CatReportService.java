@@ -55,20 +55,19 @@ public class CatReportService {
         logger.debug("requesting find all cat reports");
         return catReportRepository.findAll();
     }
-    public CatReport downloadReport(long id,  String ration, String behavior, String habits, LocalDate lastMessage,
-                                    byte [] photo) {
-        logger.info("Method downloadReport has been run");
-
-        CatReport reportCat = new CatReport();
-        reportCat.setId(id);
-        reportCat.setRation(ration);
-        reportCat.setBehavior(behavior);
-        reportCat.setHabits(habits);
-        reportCat.setLastMessage(lastMessage);
-        reportCat.setPhoto(photo);
-
-        return catReportRepository.save(reportCat);
-    }
+//    public CatReport downloadReport() {
+//        logger.info("Method downloadReport has been run");
+//
+//        CatReport reportCat = new CatReport();
+//        reportCat.setId(id);
+//        reportCat.setRation(ration);
+//        reportCat.setBehavior(behavior);
+//        reportCat.setHabits(habits);
+//        reportCat.setLastMessage(lastMessage);
+//        reportCat.setPhoto(photo);
+//
+//        return catReportRepository.save(reportCat);
+//    }
 //    public void uploadAvatar(Long studentID, MultipartFile file) throws IOException {
 //        logger.debug("requesting upload avatar by studentId: {}, and file: {}", studentID, file);
 //        CatReport client = findCatReport(cat);

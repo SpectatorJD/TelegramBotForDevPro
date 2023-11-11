@@ -23,7 +23,7 @@ public class DogReport {
         private String habits;
         private String behavior;
         private LocalDate lastMessage;
-        @ManyToOne
+        @OneToOne
         @JoinColumn(name = "dog_adopter_id")
         private DogAdopter dogAdopter;
 

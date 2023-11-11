@@ -14,7 +14,6 @@ public class CatAdopter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private long chatId;
     private String name;
     private String phone;
     @OneToOne
@@ -33,19 +32,18 @@ public class CatAdopter {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CatAdopter that = (CatAdopter) o;
-        return id == that.id && chatId == that.chatId && Objects.equals(name, that.name) && Objects.equals(phone, that.phone) && Objects.equals(cat, that.cat);
+        return id == that.id && Objects.equals(name, that.name) && Objects.equals(phone, that.phone) && Objects.equals(cat, that.cat);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, chatId, name, phone, cat);
+        return Objects.hash(id, name, phone, cat);
     }
 
     @Override
     public String toString() {
         return "CatAdopter{" +
                 "id=" + id +
-                ", chatId=" + chatId +
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", cat=" + cat +

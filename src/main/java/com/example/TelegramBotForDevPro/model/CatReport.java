@@ -21,7 +21,7 @@ public class CatReport {
     private String habits;
     private String behavior;
     private LocalDate lastMessage;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "cat_adopter_id")
     private CatAdopter catAdopter;
 
