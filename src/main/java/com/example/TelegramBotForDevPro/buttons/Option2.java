@@ -15,23 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class Option2 extends TelegramLongPollingBot {
+public class Option2  {
     private Logger logger = LoggerFactory.getLogger(Option2.class);
 
-    @Override
-    public String getBotUsername() {
-        return "@farrytail_bot";
-    }
 
-    @Override
-    public String getBotToken() {
-        return "6695921384:AAH9jQ9X0boP8_qZKGVsdLK381Fn7o2kKkc";
-    }
-
-    @Override
-    public void onUpdateReceived(Update update) {
-
-    }
 
     public void register3(long chatId) {
         SendMessage message = new SendMessage();
@@ -109,10 +96,10 @@ public class Option2 extends TelegramLongPollingBot {
         markup.setKeyboard(rowsInLine);
         message.setReplyMarkup(markup);
 
-        try {
-            execute(message);
-        } catch (TelegramApiException e) {
-            logger.error("Error occurred: " + e.getMessage());
-        }
+//        try {
+//            execute(message);
+//        } catch (TelegramApiException e) {
+//            logger.error("Error occurred: " + e.getMessage());
+//        }
     }
 }

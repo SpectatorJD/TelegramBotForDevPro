@@ -5,6 +5,7 @@ import com.example.TelegramBotForDevPro.buttons.Option1;
 import com.example.TelegramBotForDevPro.buttons.Option2;
 
 import com.example.TelegramBotForDevPro.model.CatReport;
+import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +22,21 @@ import org.telegram.telegrambots.meta.generics.TelegramBot;
 public class AnimalShelterForCats extends TelegramLongPollingBot {
     Option1 option1;
     Option2 option2;
+//    TelegramBot telegramBot;
+//    @PostConstruct
+//    public void init() {
+//        telegramBot.setUpdatesListener(this);
+//    }
 
 @Autowired
     public AnimalShelterForCats(Option1 option1, Option2 option2) {
     this.option1 = option1;
     this.option2 = option2;
+    }
+    @PostConstruct
+    public void create () {
+    logger.error("!!!!!!!");
+        System.out.println("!!!!!");
     }
 
     private Logger logger = LoggerFactory.getLogger(AnimalShelterForCats.class);
@@ -65,6 +76,8 @@ public class AnimalShelterForCats extends TelegramLongPollingBot {
     }
     @Override
     public void onUpdateReceived(Update update) {
+        System.out.println("?");
+        Long chatId1 = update.getMessage().getChatId();
         long messageId = update.getCallbackQuery().getMessage().getMessageId();
         long chatId = update.getCallbackQuery().getMessage().getChatId();
         Message message = update.getMessage();
@@ -107,12 +120,6 @@ public class AnimalShelterForCats extends TelegramLongPollingBot {
                         option2.register3(chatId);
                     }
 //                    case ("head4_button")->{
-//                        if(update.message().photo().lenght>0){
-//                            System.out.println(update.toString());
-//                            CatReport catReport = new CatReport();
-//                            catReport.setCatAdopter(update.message().text());
-//                            GetFileResponse fileResponse = bot.exsecute
-//                        }
 //                    }
                     case "query1_button" -> {
                         SendMessage sendMessage = new SendMessage(String.valueOf(chatId), "вот информация по коту по выбору 1");

@@ -6,8 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 //import org.telegram.telegrambots.meta.api.methods.commands.DeleteMyCommands;
 //import org.telegram.telegrambots.meta.generics.TelegramBot;
-import com.pengrad.telegrambot.model.DeleteMyCommands;
-import com.pengrad.telegrambot.TelegramBot;
+
 @PropertySource("application.properties")
 @Configuration
 public class TelegramBotConfiguration {
@@ -31,10 +30,10 @@ public class TelegramBotConfiguration {
 //        };
 //        return bot;
 //    }
-    @Bean
-    public TelegramBot telegramBot() {
-        TelegramBot bot = new TelegramBot (token);
-        bot.execute(new DeleteMyCommands());
-        return bot;
-    }
+//    @Bean
+//    public TelegramBot telegramBot() {
+//        TelegramBot bot = new TelegramBot (token);
+//        bot.execute(new DeleteMyCommands());
+//        return bot;
+//    }
 }

@@ -14,23 +14,9 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import java.util.ArrayList;
 import java.util.List;
 @Component
-public class Option1 extends TelegramLongPollingBot {
+public class Option1  {
     private Logger logger = LoggerFactory.getLogger(Option1.class);
 
-    @Override
-    public String getBotUsername() {
-        return "@farrytail_bot";
-    }
-
-    @Override
-    public String getBotToken() {
-        return "6695921384:AAH9jQ9X0boP8_qZKGVsdLK381Fn7o2kKkc";
-    }
-
-    @Override
-    public void onUpdateReceived(Update update) {
-
-    }
 
     public void register1(Long chatId) {
         SendMessage message = new SendMessage();
@@ -57,11 +43,11 @@ public class Option1 extends TelegramLongPollingBot {
         markup.setKeyboard(rowsInLine);
         message.setReplyMarkup(markup);
 
-        try {
-            execute(message);
-        } catch (TelegramApiException e) {
-            logger.error("Error occurred: " + e.getMessage());
-        }
+//        try {
+//            execute(message);
+//        } catch (TelegramApiException e) {
+//            logger.error("Error occurred: " + e.getMessage());
+//        }
     }
 
 
@@ -100,11 +86,11 @@ public class Option1 extends TelegramLongPollingBot {
         markup.setKeyboard(rowsInLine);
         message.setReplyMarkup(markup);
 
-        try {
-            execute(message);
-        } catch (TelegramApiException e) {
-            logger.error("Error occurred: " + e.getMessage());
-        }
+//        try {
+//            execute(message);
+//        } catch (TelegramApiException e) {
+//            logger.error("Error occurred: " + e.getMessage());
+//        }
 
 
     }
