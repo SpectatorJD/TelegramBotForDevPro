@@ -3,6 +3,8 @@ package com.example.TelegramBotForDevPro.service;
 import com.example.TelegramBotForDevPro.buttons.Option1;
 import com.example.TelegramBotForDevPro.buttons.Option2;
 
+import com.example.TelegramBotForDevPro.configuration.TelegramBotConfiguration;
+import com.example.TelegramBotForDevPro.configuration.TelegramBotConfigurations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +17,14 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 @Service
 public class AnimalShelterForDogs extends TelegramLongPollingBot {
+     TelegramBotConfigurations telegramBotConfigurations;
     Option1 option1;
     Option2 option2;
 
+
     @Autowired
-    public AnimalShelterForDogs() {
+    public AnimalShelterForDogs(TelegramBotConfiguration telegramBotConfiguration, Option1 option1, Option2 option2) {
+        this.telegramBotConfigurations = telegramBotConfigurations;
         this.option1 = option1;
         this.option2 = option2;
     }
@@ -40,14 +45,13 @@ public class AnimalShelterForDogs extends TelegramLongPollingBot {
 //    private TelegramBot telegramBot;
 
 
-    @Override
     public String getBotUsername() {
-        return "@farrytail_bot";
+        return telegramBotConfigurations.getBotName();
     }
 
     @Override
     public String getBotToken() {
-        return "6695921384:AAH9jQ9X0boP8_qZKGVsdLK381Fn7o2kKkc";
+        return telegramBotConfigurations.getToken();
     }
 
     @Override

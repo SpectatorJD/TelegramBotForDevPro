@@ -1,6 +1,7 @@
 package com.example.TelegramBotForDevPro.controllerBd;
 
 import com.example.TelegramBotForDevPro.model.CatReport;
+import com.example.TelegramBotForDevPro.serviceBd.CatAdopterService;
 import com.example.TelegramBotForDevPro.serviceBd.CatReportService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -8,6 +9,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,10 +21,12 @@ import java.util.Collection;
 @RequestMapping("/cat_report")
 public class CatReportController {
     public CatReportService catReportService;
+    public CatAdopterService catAdopterService;
 
     @Autowired
-    public CatReportController(CatReportService catReportService) {
+    public CatReportController(CatReportService catReportService, CatAdopterService catAdopterService) {
         this.catReportService = catReportService;
+        this.catAdopterService = catAdopterService;
     }
 
     @Operation(
@@ -132,5 +136,26 @@ public class CatReportController {
     public ResponseEntity<Collection<CatReport>> getAllCatReports() {
         Collection<CatReport> catReports = catReportService.findAllCatReports();
         return ResponseEntity.ok(catReports);
+    }
+    @Operation(
+            summary = "Поиск фото по id из БД.",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "фото из отчета",
+                            content = @Content(
+                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
+                                    array = @ArraySchema(schema = @Schema(implementation = CatReport.class))
+                            )
+                    )
+            }
+    )
+    @GetMapping(value = "/{id}/cat_photo")
+    public ResponseEntity<byte[]> downLoadAvatar(@PathVariable Long id) {
+        CatReport catReport = catReportService.findCatReport(id);
+        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.parseMediaType(catReport.getMediaType()));
+        headers.setContentLength(catReport.getPhoto().length);
+        return ResponseEntity.status(HttpStatus.OK).headers(headers).body(catReport.getPhoto());
     }
 }

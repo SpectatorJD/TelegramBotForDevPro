@@ -1,8 +1,10 @@
 package com.example.TelegramBotForDevPro.buttons;
 
 ;
+import com.example.TelegramBotForDevPro.configuration.TelegramBotConfigurations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -17,15 +19,21 @@ import java.util.List;
 @Component
 public class Option2 extends TelegramLongPollingBot {
     private Logger logger = LoggerFactory.getLogger(Option2.class);
+    TelegramBotConfigurations telegramBotConfigurations;
+
+    @Autowired
+    public Option2(TelegramBotConfigurations telegramBotConfigurations) {
+        this.telegramBotConfigurations = telegramBotConfigurations;
+    }
 
     @Override
     public String getBotUsername() {
-        return "@farrytail_bot";
+        return telegramBotConfigurations.getBotName();
     }
 
     @Override
     public String getBotToken() {
-        return "6695921384:AAH9jQ9X0boP8_qZKGVsdLK381Fn7o2kKkc";
+        return telegramBotConfigurations.getToken();
     }
 
     @Override
