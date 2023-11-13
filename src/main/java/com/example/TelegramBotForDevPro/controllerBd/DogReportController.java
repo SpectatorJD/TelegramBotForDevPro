@@ -134,8 +134,8 @@ public class DogReportController {
         Collection<DogReport> dogReports = dogReportService.findAllDogReports();
         return ResponseEntity.ok(dogReports);
     }
-    @GetMapping(value = "/{id}/cat_photo")
-    public ResponseEntity<byte[]> downLoadAvatar(@PathVariable Long id) {
+    @GetMapping(value = "/{id}/dog_photo")
+    public ResponseEntity<byte[]> downLoadDogPhoto(@PathVariable Long id) {
         DogReport catReport = dogReportService.findDogReport(id);
         HttpHeaders headers = new HttpHeaders();
 //        headers.setContentType(MediaType.parseMediaType(catReport.getMediaType()));
@@ -144,5 +144,5 @@ public class DogReportController {
     }
 }
 
-}
+
 

@@ -23,7 +23,7 @@ public class CatReportController {
     public CatReportService catReportService;
 
     @Autowired
-    public CatReportController(CatReportService catReportService, ) {
+    public CatReportController(CatReportService catReportService) {
         this.catReportService = catReportService;
     }
 
@@ -149,7 +149,7 @@ public class CatReportController {
             }
     )
     @GetMapping(value = "/{id}/cat_photo")
-    public ResponseEntity<byte[]> downLoadAvatar(@PathVariable Long id) {
+    public ResponseEntity<byte[]> downLoadCatPhoto(@PathVariable Long id) {
         CatReport catReport = catReportService.findCatReport(id);
         HttpHeaders headers = new HttpHeaders();
 //        headers.setContentType(MediaType.parseMediaType(catReport.getMediaType()));
