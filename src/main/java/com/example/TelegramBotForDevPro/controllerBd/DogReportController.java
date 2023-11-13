@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -133,5 +134,15 @@ public class DogReportController {
         Collection<DogReport> dogReports = dogReportService.findAllDogReports();
         return ResponseEntity.ok(dogReports);
     }
+    @GetMapping(value = "/{id}/cat_photo")
+    public ResponseEntity<byte[]> downLoadAvatar(@PathVariable Long id) {
+        DogReport catReport = dogReportService.findDogReport(id);
+        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.parseMediaType(catReport.getMediaType()));
+        headers.setContentLength(catReport.getPhoto().length);
+        return ResponseEntity.status(HttpStatus.OK).headers(headers).body(catReport.getPhoto());
+    }
+}
+
 }
 

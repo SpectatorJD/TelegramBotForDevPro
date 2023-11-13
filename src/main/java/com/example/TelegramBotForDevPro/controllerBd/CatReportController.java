@@ -21,12 +21,10 @@ import java.util.Collection;
 @RequestMapping("/cat_report")
 public class CatReportController {
     public CatReportService catReportService;
-    public CatAdopterService catAdopterService;
 
     @Autowired
-    public CatReportController(CatReportService catReportService, CatAdopterService catAdopterService) {
+    public CatReportController(CatReportService catReportService, ) {
         this.catReportService = catReportService;
-        this.catAdopterService = catAdopterService;
     }
 
     @Operation(
