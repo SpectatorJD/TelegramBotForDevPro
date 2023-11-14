@@ -1,7 +1,7 @@
 package com.example.TelegramBotForDevPro.configuration;
 
 
-import com.example.TelegramBotForDevPro.service.AnimalShelterForDogs;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
