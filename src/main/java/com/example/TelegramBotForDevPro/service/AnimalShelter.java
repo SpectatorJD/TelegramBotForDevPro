@@ -137,7 +137,7 @@ public class AnimalShelter extends TelegramLongPollingBot {
                 case "query1_cat_button" -> {
                     SendMessage sendMessage = new SendMessage(String.valueOf(chatId), "вот информация по коту по выбору 1");
                     //
-                    //
+                    //1
                     try {
                         execute(sendMessage);
                     } catch (TelegramApiException e) {
