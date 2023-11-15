@@ -53,7 +53,7 @@ public class AnimalShelter extends TelegramLongPollingBot {
 //    AnimalShelterRepository animalShelterRepository;
 //
 //
-//    @Autowired
+//    @Autowired21432536
 //
 //    public AnimalShelter(AnimalShelterRepository animalShelterRepository) {
 //        this.animalShelterRepository = animalShelterRepository;
