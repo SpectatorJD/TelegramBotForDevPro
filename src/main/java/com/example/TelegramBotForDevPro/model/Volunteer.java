@@ -18,14 +18,12 @@ public class Volunteer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private long chatId;
     private String name;
     private String phone;
     private String userName;
 
     public Volunteer(long id, long chatId, String name, String phone, String userName) {
         this.id = id;
-        this.chatId = chatId;
         this.name = name;
         this.phone = phone;
         this.userName = userName;
@@ -36,19 +34,18 @@ public class Volunteer {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Volunteer volunteer = (Volunteer) o;
-        return id == volunteer.id && chatId == volunteer.chatId && Objects.equals(name, volunteer.name) && Objects.equals(phone, volunteer.phone) && Objects.equals(userName, volunteer.userName);
+        return id == volunteer.id && Objects.equals(name, volunteer.name) && Objects.equals(phone, volunteer.phone) && Objects.equals(userName, volunteer.userName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, chatId, name, phone, userName);
+        return Objects.hash(id, name, phone, userName);
     }
 
     @Override
     public String toString() {
         return "Volunteer{" +
                 "id=" + id +
-                ", chatId=" + chatId +
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", userName='" + userName + '\'' +
