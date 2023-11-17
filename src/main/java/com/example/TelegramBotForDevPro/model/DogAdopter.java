@@ -8,14 +8,18 @@ import java.util.Objects;
 
 @Getter
 @Setter
-@Entity(name = "dog_adopter")
+@Entity
+@Table(name = "dog_adopter")
 public class DogAdopter {
     public DogAdopter() {
     }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private long id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "phone")
     private String phone;
     @OneToOne
     @JoinColumn(name = "dog_id")

@@ -28,51 +28,51 @@ public class VolunteerTest {
     }
 
     private List<Volunteer> volunteers() {
-        return List.of(new Volunteer(1L, 541, "Michale", "89228191712", "Angel"),
-                new Volunteer(2L, 678L, "Luter", "89228892732", "Devil"));
+        return List.of(new Volunteer(1L, "Michale", "89228191712", "Angel"),
+                new Volunteer(2L, "Luter", "89228892732", "Devil"));
     }
 
     @Test
     public void findAllVolunteersTest() {
         when(volunteerRepository.findAll()).thenReturn(volunteers());
-        out.addVolunteer(new Volunteer(1L, 541, "Michale", "89228191712", "Angel"));
-        out.addVolunteer(new Volunteer(2L, 678L, "Luter", "89228892732", "Devil"));
+        out.addVolunteer(new Volunteer(1L, "Michale", "89228191712", "Angel"));
+        out.addVolunteer(new Volunteer(2L, "Luter", "89228892732", "Devil"));
         assertIterableEquals(volunteers(), out.findAllVolunteers());
         verify(volunteerRepository, times(1)).findAll();
     }
 
     @Test
     public void addVolunteerTest() {
-        when(volunteerRepository.save(new Volunteer(1L, 541, "Michale", "89228191712", "Angel"))).thenReturn(new Volunteer(1L, 541, "Michale", "89228191712", "Angel"));
-        Volunteer volunteer = new Volunteer(1L, 541, "Michale", "89228191712", "Angel");
-        Volunteer result = out.addVolunteer(new Volunteer(1L, 541, "Michale", "89228191712", "Angel"));
+        when(volunteerRepository.save(new Volunteer(1L, "Michale", "89228191712", "Angel"))).thenReturn(new Volunteer(1L, "Michale", "89228191712", "Angel"));
+        Volunteer volunteer = new Volunteer(1L, "Michale", "89228191712", "Angel");
+        Volunteer result = out.addVolunteer(new Volunteer(1L, "Michale", "89228191712", "Angel"));
         assertEquals(volunteer, result);
-        verify(volunteerRepository, times(1)).save(new Volunteer(1L, 541, "Michale", "89228191712", "Angel"));
+        verify(volunteerRepository, times(1)).save(new Volunteer(1L, "Michale", "89228191712", "Angel"));
     }
 
     @Test
     public void findVolunteerTest() {
-        when(volunteerRepository.findById(1L)).thenReturn(Optional.of(new Volunteer(1L, 541, "Michale", "89228191712", "Angel")));
+        when(volunteerRepository.findById(1L)).thenReturn(Optional.of(new Volunteer(1L, "Michale", "89228191712", "Angel")));
 
-        Volunteer volunteer = new Volunteer(1L, 541, "Michale", "89228191712", "Angel");
+        Volunteer volunteer = new Volunteer(1L, "Michale", "89228191712", "Angel");
         Volunteer result = out.findVolunteer(1L);
         verify(volunteerRepository, times(1)).findById(1L);
     }
 
     @Test
     public void updateVolunteerTest() {
-        when(volunteerRepository.save(new Volunteer(1L, 541, "Michale", "89228191712", "Angel"))).thenReturn(new Volunteer(1L, 541, "Michale", "89228191712", "Angel"));
+        when(volunteerRepository.save(new Volunteer(1L, "Michale", "89228191712", "Angel"))).thenReturn(new Volunteer(1L, "Michale", "89228191712", "Angel"));
 
-        Volunteer volunteer = new Volunteer(1L, 541, "Michale", "89228191712", "Angel");
-        Volunteer result = out.updateVolunteer(new Volunteer(1L, 541, "Michale", "89228191712", "Angel"));
+        Volunteer volunteer = new Volunteer(1L, "Michale", "89228191712", "Angel");
+        Volunteer result = out.updateVolunteer(new Volunteer(1L, "Michale", "89228191712", "Angel"));
         assertEquals(volunteer, result);
-        verify(volunteerRepository, times(1)).save(new Volunteer(1L, 541, "Michale", "89228191712", "Angel"));
+        verify(volunteerRepository, times(1)).save(new Volunteer(1L, "Michale", "89228191712", "Angel"));
     }
 
     @Test
     public void deleteVolunteerTest() {
-        when(volunteerRepository.findById(1L)).thenReturn(Optional.of(new Volunteer(1L, 541, "Michale", "89228191712", "Angel")));
-        Volunteer volunteer = new Volunteer(1L, 541, "Michale", "89228191712", "Angel");
+        when(volunteerRepository.findById(1L)).thenReturn(Optional.of(new Volunteer(1L, "Michale", "89228191712", "Angel")));
+        Volunteer volunteer = new Volunteer(1L, "Michale", "89228191712", "Angel");
         Volunteer result = out.findVolunteer(1L);
         out.deleteVolunteer(1L);
         verify(volunteerRepository, times(1)).deleteById(1L);

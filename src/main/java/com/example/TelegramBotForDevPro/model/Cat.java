@@ -1,9 +1,6 @@
 package com.example.TelegramBotForDevPro.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,15 +8,20 @@ import java.util.Objects;
 
 @Getter
 @Setter
-@Entity(name = "cat")
+@Entity
+@Table(name = "cat")
 public class Cat {
     public Cat() {
     }
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Column(name = "id")
     private long id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "breed")
     private String breed;
+    @Column(name = "color")
     private String color;
 
     public Cat(long id, String name, String breed, String color) {

@@ -7,14 +7,18 @@ import lombok.Setter;
 import java.util.Objects;
 @Getter
 @Setter
-@Entity(name = "cat_adopter")
+@Entity
+@Table(name = "cat_adopter")
 public class CatAdopter {
     public CatAdopter() {
     }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private long id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "phone")
     private String phone;
     @OneToOne
     @JoinColumn(name = "cat_id")

@@ -9,17 +9,24 @@ import java.util.Arrays;
 import java.util.Objects;
 @Setter
 @Getter
-@Entity(name = "report_about_cat")
+@Entity
+@Table(name = "report_about_cat")
 public class CatReport {
     public CatReport() {
     }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private long id;
+    @Column(name = "photo")
     private byte[] photo;
+    @Column(name = "ration")
     private String ration;
+    @Column(name = "habits")
     private String habits;
+    @Column(name = "behavior")
     private String behavior;
+    @Column(name = "lastMessage")
     private LocalDate lastMessage;
     @OneToOne
     @JoinColumn(name = "cat_adopter_id")

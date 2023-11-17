@@ -1,28 +1,30 @@
 package com.example.TelegramBotForDevPro.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Objects;
 @Getter
 @Setter
-@Entity(name = "volunteer")
+@Entity
+@Table(name = "volunteer")
 public class Volunteer {
     public Volunteer() {
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private long id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "phone")
     private String phone;
+    @Column(name = "userName")
     private String userName;
 
-    public Volunteer(long id, long chatId, String name, String phone, String userName) {
+    public Volunteer(long id, String name, String phone, String userName) {
         this.id = id;
         this.name = name;
         this.phone = phone;

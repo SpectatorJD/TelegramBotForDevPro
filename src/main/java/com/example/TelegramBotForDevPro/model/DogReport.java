@@ -10,18 +10,25 @@ import java.util.Objects;
 
 @Getter
 @Setter
-@Entity(name = "report_about_Dog")
+@Entity
+@Table(name = "report_about_Dog")
 public class DogReport {
         public DogReport() {
         }
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name = "id")
         private long id;
+        @Column(name = "photo")
         private byte[] photo;
+        @Column(name = "ration")
         private String ration;
+        @Column(name = "habits")
         private String habits;
+        @Column(name = "behavior")
         private String behavior;
+        @Column(name = "lastMessage")
         private LocalDate lastMessage;
         @OneToOne
         @JoinColumn(name = "dog_adopter_id")
