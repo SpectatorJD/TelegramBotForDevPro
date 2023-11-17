@@ -105,16 +105,16 @@ public class AnimalShelter extends TelegramLongPollingBot {
             } catch (TelegramApiException e) {
                 throw new RuntimeException(e);
             }
-
         }
 
 //    }
 
 
         if (update.hasCallbackQuery()) {
+            System.out.println("+");
             long messageId = update.getCallbackQuery().getMessage().getMessageId();
             long chatId = update.getCallbackQuery().getMessage().getChatId();
-            register1(chatId);
+
             String callbackData = update.getCallbackQuery().getData();
             switch (callbackData) {
                 case ("cat_button") -> {
