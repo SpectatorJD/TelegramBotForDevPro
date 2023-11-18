@@ -17,11 +17,11 @@ public class Volunteer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
-    @Column(name = "name")
+    @Column(name = "name") //, nullable = false)
     private String name;
-    @Column(name = "phone")
+    @Column(name = "phone") //, nullable = false)
     private String phone;
-    @Column(name = "userName")
+    @Column(name = "userName") //, nullable = false)
     private String userName;
 
     public Volunteer(long id, String name, String phone, String userName) {

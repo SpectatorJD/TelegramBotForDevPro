@@ -1,4 +1,5 @@
 --liquibase formatted sql
+
 --changeset dgaraev:new tables
 
   create table cats(
@@ -55,3 +56,8 @@ name text,
 phone text,
 userName text
  );
+
+
+
+
+

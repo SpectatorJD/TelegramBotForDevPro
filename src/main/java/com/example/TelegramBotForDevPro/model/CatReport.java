@@ -18,15 +18,15 @@ public class CatReport {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
-    @Column(name = "photo")
+    @Column(name = "photo") //, nullable = false)
     private byte[] photo;
-    @Column(name = "ration")
+    @Column(name = "ration") //, nullable = false)
     private String ration;
-    @Column(name = "habits")
+    @Column(name = "habits") //, nullable = false)
     private String habits;
-    @Column(name = "behavior")
+    @Column(name = "behavior") //, nullable = false)
     private String behavior;
-    @Column(name = "lastMessage")
+    @Column(name = "lastMessage") //, nullable = false)
     private LocalDate lastMessage;
     @OneToOne
     @JoinColumn(name = "cat_adopter_id")

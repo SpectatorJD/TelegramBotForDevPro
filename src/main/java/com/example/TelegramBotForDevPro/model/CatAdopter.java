@@ -16,9 +16,9 @@ public class CatAdopter {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
-    @Column(name = "name")
+    @Column(name = "name") //, nullable = false)
     private String name;
-    @Column(name = "phone")
+    @Column(name = "phone") //, nullable = false)
     private String phone;
     @OneToOne
     @JoinColumn(name = "cat_id")

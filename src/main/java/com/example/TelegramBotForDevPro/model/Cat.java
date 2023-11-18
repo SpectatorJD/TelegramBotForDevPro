@@ -17,11 +17,11 @@ public class Cat {
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 @Column(name = "id")
     private long id;
-    @Column(name = "name")
+    @Column(name = "name") //, nullable = false)
     private String name;
     @Column(name = "breed")
     private String breed;
-    @Column(name = "color")
+    @Column(name = "color") //, nullable = false)
     private String color;
 
     public Cat(long id, String name, String breed, String color) {
