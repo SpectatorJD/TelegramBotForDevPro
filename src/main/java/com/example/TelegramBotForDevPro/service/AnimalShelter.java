@@ -3,8 +3,6 @@ package com.example.TelegramBotForDevPro.service;
 //import com.example.TelegramBotForDevPro.repository.AnimalShelterRepository;
 
 import com.example.TelegramBotForDevPro.configuration.TelegramBotConfigurations;
-import com.example.TelegramBotForDevPro.model.CatReport;
-import com.example.TelegramBotForDevPro.repository.CatReportRepository;
 import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
@@ -95,6 +92,8 @@ public class AnimalShelter extends TelegramLongPollingBot {
 ////
 //            register1(chatId);
         if (update.hasMessage() && update.getMessage().getText().equals("/start")) {
+            long chatId = update.getMessage().getChatId();
+            register1(chatId);
             try {
                 execute(
                         SendMessage
@@ -106,22 +105,19 @@ public class AnimalShelter extends TelegramLongPollingBot {
                 throw new RuntimeException(e);
             }
 
-        }
 
-//    }
+        }
 
 
         if (update.hasCallbackQuery()) {
             long messageId = update.getCallbackQuery().getMessage().getMessageId();
             long chatId = update.getCallbackQuery().getMessage().getChatId();
-            register1(chatId);
             String callbackData = update.getCallbackQuery().getData();
             switch (callbackData) {
                 case ("cat_button") -> {
-                    EditMessageText messageText = new EditMessageText();
+                    SendMessage messageText = new SendMessage();
                     messageText.setChatId(String.valueOf(chatId));
                     messageText.setText("choose");
-                    messageText.setMessageId((int) messageId);
                     try {
                         execute(messageText);
                     } catch (TelegramApiException e) {
@@ -227,112 +223,113 @@ public class AnimalShelter extends TelegramLongPollingBot {
 //                        }
 //                    }
 //                }
-                        case "dog_button" -> {
-                            register2(chatId);
-                        }
-                        case ("head3_dog_button")-> {
-                            register3(chatId);
+                case "dog_button" -> {
+                    register2(chatId);
+                }
+                case ("head3_dog_button") -> {
+                    register3(chatId);
 
-                        }
-                        case "query1_dog_button" -> {
-                            SendMessage sendMessage = new SendMessage(String.valueOf(chatId), "вот информация по собаке по выбору 1");
-                            try {
-                                execute(sendMessage);
-                            } catch (TelegramApiException e) {
-                                logger.info("Processing update: {}", update);
-                            }
-
-                        }
-                        case "query2_dog_button" -> {
-                            SendMessage sendMessage = new SendMessage(String.valueOf(messageId), "вот информация по собаке по выбору 2");
-                            try {
-                                execute(sendMessage);
-                            } catch (TelegramApiException e) {
-                                logger.info("Processing update: {}", update);
-                            }
-
-                        }
-                        case "query3_dog_button" -> {
-                            SendMessage sendMessage = new SendMessage(String.valueOf(messageId), "вот информация по собаке по выбору 3");
-                            try {
-                                execute(sendMessage);
-                            } catch (TelegramApiException e) {
-                                logger.info("Processing update: {}", update);
-                            }
-
-                        }
-                        case "query4_dog_button" -> {
-                            SendMessage sendMessage = new SendMessage(String.valueOf(messageId), "вот информация по собаке по выбору 4");
-                            try {
-                                execute(sendMessage);
-                            } catch (TelegramApiException e) {
-                                logger.info("Processing update: {}", update);
-                            }
-
-                        }
-                        case "query5_dog_button" -> {
-                            SendMessage sendMessage = new SendMessage(String.valueOf(messageId), "вот информация по собаке по выбору 5.1");
-                            try {
-                                execute(sendMessage);
-                            } catch (TelegramApiException e) {
-                                logger.info("Processing update: {}", update);
-                            }
-
-                        }
-                        case "query6_dog_button" -> {
-                            SendMessage sendMessage = new SendMessage(String.valueOf(messageId), "вот информация по собаке по выбору 6");
-                            try {
-                                execute(sendMessage);
-                            } catch (TelegramApiException e) {
-                                logger.info("Processing update: {}", update);
-                            }
-
-                        }
-                        case "query7_dog_button" -> {
-                            SendMessage sendMessage = new SendMessage(String.valueOf(messageId), "вот информация по собаке по выбору 7");
-                            try {
-                                execute(sendMessage);
-                            } catch (TelegramApiException e) {
-                                logger.info("Processing update: {}", update);
-                            }
-
-                        }
-                        case "query8_dog_button" -> {
-                            SendMessage sendMessage = new SendMessage(String.valueOf(messageId), "вот информация по собаке по выбору 8");
-                            try {
-                                execute(sendMessage);
-                            } catch (TelegramApiException e) {
-                                logger.info("Processing update: {}", update);
-                            }
-
-                        }
-                        case "query9_dog_button" -> {
-                            SendMessage sendMessage = new SendMessage(String.valueOf(messageId), "вот информация по собаке по выбору 9");
-                            try {
-                                execute(sendMessage);
-                            } catch (TelegramApiException e) {
-                                logger.info("Processing update: {}", update);
-                            }
-
-                        }
-                        case "query10_dog_button" -> {
-                            SendMessage sendMessage = new SendMessage(String.valueOf(messageId), "вот информация по собаке по выбору 10");
-                            try {
-                                execute(sendMessage);
-                            } catch (TelegramApiException e) {
-                                logger.info("Processing update: {}", update);
-                            }
-
-                        }
-                        case "query11_dog_button" -> {
-                            SendMessage sendMessage = new SendMessage(String.valueOf(messageId), "вот информация по собаке по выбору 11");
-                            try {
-                                execute(sendMessage);
-                            } catch (TelegramApiException e) {
-                                logger.info("Processing update: {}", update);
-                            }
-                        }
+                }
+                case "query1_dog_button" -> {
+                    SendMessage sendMessage = new SendMessage(String.valueOf(chatId), "вот информация по собаке по выбору 1");
+                    try {
+                        execute(sendMessage);
+                    } catch (TelegramApiException e) {
+                        logger.info("Processing update: {}", update);
                     }
+
+                }
+                case "query2_dog_button" -> {
+                    SendMessage sendMessage = new SendMessage(String.valueOf(messageId), "вот информация по собаке по выбору 2");
+                    try {
+                        execute(sendMessage);
+                    } catch (TelegramApiException e) {
+                        logger.info("Processing update: {}", update);
+                    }
+
+                }
+                case "query3_dog_button" -> {
+                    SendMessage sendMessage = new SendMessage(String.valueOf(messageId), "вот информация по собаке по выбору 3");
+                    try {
+                        execute(sendMessage);
+                    } catch (TelegramApiException e) {
+                        logger.info("Processing update: {}", update);
+                    }
+
+                }
+                case "query4_dog_button" -> {
+                    SendMessage sendMessage = new SendMessage(String.valueOf(messageId), "вот информация по собаке по выбору 4");
+                    try {
+                        execute(sendMessage);
+                    } catch (TelegramApiException e) {
+                        logger.info("Processing update: {}", update);
+                    }
+
+                }
+                case "query5_dog_button" -> {
+                    SendMessage sendMessage = new SendMessage(String.valueOf(messageId), "вот информация по собаке по выбору 5.1");
+                    try {
+                        execute(sendMessage);
+                    } catch (TelegramApiException e) {
+                        logger.info("Processing update: {}", update);
+                    }
+
+                }
+                case "query6_dog_button" -> {
+                    SendMessage sendMessage = new SendMessage(String.valueOf(messageId), "вот информация по собаке по выбору 6");
+                    try {
+                        execute(sendMessage);
+                    } catch (TelegramApiException e) {
+                        logger.info("Processing update: {}", update);
+                    }
+
+                }
+                case "query7_dog_button" -> {
+                    SendMessage sendMessage = new SendMessage(String.valueOf(messageId), "вот информация по собаке по выбору 7");
+                    try {
+                        execute(sendMessage);
+                    } catch (TelegramApiException e) {
+                        logger.info("Processing update: {}", update);
+                    }
+
+                }
+                case "query8_dog_button" -> {
+                    SendMessage sendMessage = new SendMessage(String.valueOf(messageId), "вот информация по собаке по выбору 8");
+                    try {
+                        execute(sendMessage);
+                    } catch (TelegramApiException e) {
+                        logger.info("Processing update: {}", update);
+                    }
+
+                }
+                case "query9_dog_button" -> {
+                    SendMessage sendMessage = new SendMessage(String.valueOf(messageId), "вот информация по собаке по выбору 9");
+                    try {
+                        execute(sendMessage);
+                    } catch (TelegramApiException e) {
+                        logger.info("Processing update: {}", update);
+                    }
+
+                }
+                case "query10_dog_button" -> {
+                    SendMessage sendMessage = new SendMessage(String.valueOf(messageId), "вот информация по собаке по выбору 10");
+                    try {
+                        execute(sendMessage);
+                    } catch (TelegramApiException e) {
+                        logger.info("Processing update: {}", update);
+                    }
+
+                }
+                case "query11_dog_button" -> {
+                    SendMessage sendMessage = new SendMessage(String.valueOf(messageId), "вот информация по собаке по выбору 11");
+                    try {
+                        execute(sendMessage);
+                    } catch (TelegramApiException e) {
+                        logger.info("Processing update: {}", update);
+                    }
+                }
+            }
+
                 }
                     }
     public void register1(Long chatId) {
