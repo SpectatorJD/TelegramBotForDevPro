@@ -107,7 +107,7 @@ public class BotUpdatesListener implements UpdatesListener {
 
     private void handleMessage(Message message) {
 
-        boolean isNewCustomer = false; // Флаг нового пользователя
+        boolean isNewCustomer = false;
         try {
             Long chatId = message.from().id();
             Customer customer;

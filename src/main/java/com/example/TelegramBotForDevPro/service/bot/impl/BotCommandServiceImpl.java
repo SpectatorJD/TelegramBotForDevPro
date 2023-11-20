@@ -60,7 +60,7 @@ public class BotCommandServiceImpl implements BotCommandService {
     @Autowired
     private AnimalReportService animalReportService;
 
-    // Константы сообщений для проверки reply сообщений с телефоном
+
     public static final String PHONE = "Чтобы мы могли с Вами связаться, напишите в чат Ваш номер телефона.";
     public static final String PHONE_AGAIN = "Номер телефона не прошел проверку, пожалуйста, попробуйте еще раз.";
     public static final String VOLUNTEER_MESSAGE = "Пожалуйста, напишите в чат по какому вопросу Вы обращаетесь.";
@@ -117,22 +117,22 @@ public class BotCommandServiceImpl implements BotCommandService {
 
     @Override
     public void runStart(Long chatId) {
-        // Кнопки выбора приюта
+
         InlineKeyboardButton catShelterButton = new InlineKeyboardButton(CATS.getDescription());
         catShelterButton.callbackData(CATS.toString());
 
         InlineKeyboardButton dogShelterButton = new InlineKeyboardButton(DOGS.getDescription());
         dogShelterButton.callbackData(DOGS.toString());
 
-        // Добавление кнопок в клавиатуру
+
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         inlineKeyboardMarkup.addRow(catShelterButton, dogShelterButton);
 
-        // Создание сообщения, добавление в него клавиатуры с рядом кнопок
+
         SendMessage sendMessage = new SendMessage(chatId, "*Выберите приют*");
         sendMessage.replyMarkup(inlineKeyboardMarkup);
 
-        // Отправка сообщения
+
         prepareAndExecuteMessage(sendMessage);
     }
 
@@ -147,16 +147,16 @@ public class BotCommandServiceImpl implements BotCommandService {
 
     @Override
     public void runDogs(Long chatId, AnimalShelter shelter) {
-        // Отправка картинки
+
         sendPhotoShelter(chatId, shelter);
 
-        // Отображение кнопок
+
         runDialogAnimalShelter(chatId);
     }
 
     @Override
     public void runInfo(Long chatId, AnimalShelter shelter) {
-        // Кнопки
+
         InlineKeyboardButton shelterButton = new InlineKeyboardButton(SHELTER.getDescription());
         shelterButton.callbackData(SHELTER.toString());
 
@@ -172,7 +172,7 @@ public class BotCommandServiceImpl implements BotCommandService {
         InlineKeyboardButton safetyButton = new InlineKeyboardButton(SAFETY.getDescription());
         safetyButton.callbackData(SAFETY.toString());
 
-        // Добавление кнопок в клавиатуру
+
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         inlineKeyboardMarkup
                 .addRow(shelterButton)
@@ -181,11 +181,11 @@ public class BotCommandServiceImpl implements BotCommandService {
                 .addRow(securityButton)
                 .addRow(safetyButton);
 
-        // Создание сообщения, добавление в него клавиатуры с рядом кнопок
+
         SendMessage sendMessage = new SendMessage(chatId, "*Выберите дополнительное действие*");
         sendMessage.replyMarkup(inlineKeyboardMarkup);
 
-        // Отправка сообщения
+
         prepareAndExecuteMessage(sendMessage);
     }
 
@@ -290,10 +290,10 @@ public class BotCommandServiceImpl implements BotCommandService {
 
     @Override
     public void runTelephone(Long chatId) {
-        // Отправка сообщения в чат с ботом
+
         SendMessage sendMessage = new SendMessage(chatId, PHONE);
 
-        // Новый диалог
+
         sendMessage.replyMarkup(new ForceReply());
         telegramBot.execute(sendMessage);
     }
@@ -307,7 +307,7 @@ public class BotCommandServiceImpl implements BotCommandService {
             SendMessage sendMessage = new SendMessage(chatId, "Номер телефона принят!");
             telegramBot.execute(sendMessage);
         } else {
-            // Новый диалог "Телефон заново!"
+
             SendMessage sendMessage = new SendMessage(chatId, PHONE_AGAIN);
             sendMessage.replyMarkup(new ForceReply());
             telegramBot.execute(sendMessage);
@@ -316,7 +316,7 @@ public class BotCommandServiceImpl implements BotCommandService {
 
     @Override
     public void runVolunteer(Long chatId) {
-        // Отправка сообщения в чат с ботом
+
         SendMessage sendMessage = new SendMessage(chatId, VOLUNTEER_MESSAGE);
         sendMessage.replyMarkup(new ForceReply());
         telegramBot.execute(sendMessage);
@@ -326,7 +326,7 @@ public class BotCommandServiceImpl implements BotCommandService {
     public void sendMessageToVolunteer(Long chatId, String text) {
         Customer customer = customerRepository.findByChatId(chatId).get();
 
-        // Отправка сообщения в чат с волонтерами
+
         String volunteerMessage = String.format("""
                         <b>%s</b> зовёт волонтёра!
                         Номер телефона: %s.
@@ -387,7 +387,7 @@ public class BotCommandServiceImpl implements BotCommandService {
 
 
     private void runDialogAnimalShelter(Long chatId) {
-        // Кнопки
+
         InlineKeyboardButton infoShelterButton = new InlineKeyboardButton(INFO.getDescription());
         infoShelterButton.callbackData(INFO.toString());
 
@@ -403,7 +403,7 @@ public class BotCommandServiceImpl implements BotCommandService {
         InlineKeyboardButton volunteerButton = new InlineKeyboardButton(VOLUNTEER.getDescription());
         volunteerButton.callbackData(VOLUNTEER.toString());
 
-        // Добавление кнопок в клавиатуру
+
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         inlineKeyboardMarkup
                 .addRow(infoShelterButton)
@@ -412,11 +412,11 @@ public class BotCommandServiceImpl implements BotCommandService {
                 .addRow(getUserPhoneButton)
                 .addRow(volunteerButton);
 
-        // Создание сообщения, добавление в него клавиатуры с рядом кнопок
+
         SendMessage sendMessage = new SendMessage(chatId, "*Выберите действие*");
         sendMessage.replyMarkup(inlineKeyboardMarkup);
 
-        // Отправка сообщения
+
         prepareAndExecuteMessage(sendMessage);
     }
 
