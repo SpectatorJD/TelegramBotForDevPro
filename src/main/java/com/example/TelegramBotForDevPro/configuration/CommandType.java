@@ -1,7 +1,7 @@
 package com.example.TelegramBotForDevPro.configuration;
 
 
-import com.example.TelegramBotForDevPro.service.bot.BotCommandService;
+
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.lang.Nullable;

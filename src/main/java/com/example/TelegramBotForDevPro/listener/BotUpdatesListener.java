@@ -128,7 +128,7 @@ public class BotUpdatesListener implements UpdatesListener {
                 return;
             }
 
-            // Ловим сообщения с фото
+
             if (message.photo() != null && message.caption() != null) {
                 botCommandService.saveReport(message);
                 return;
@@ -174,10 +174,10 @@ public class BotUpdatesListener implements UpdatesListener {
 
     private void handleReplyToMessage(Message message) {
         if (message.replyToMessage().text().equals(PHONE) || message.replyToMessage().text().equals(PHONE_AGAIN)) {
-            // Если сообщение пришло в ответ на кнопку "Телефон"
+
             botCommandService.saveTelephone(message.chat().id(), message.text());
         } else if (message.replyToMessage().text().equals(VOLUNTEER_MESSAGE)) {
-            // Если сообщение пришло в ответ на кнопку "Позвать волонтера" с любым текстом
+
             botCommandService.sendMessageToVolunteer(message.chat().id(), message.text());
             SendMessage sendMessage = new SendMessage(message.chat().id(), "Волонтер скоро свяжется с Вами!");
             telegramBot.execute(sendMessage);

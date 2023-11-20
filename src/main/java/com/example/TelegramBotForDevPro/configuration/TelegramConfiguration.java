@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
 
-@Configuration
+/*@Configuration
 @Data
 @PropertySource("application.properties")
 public class TelegramConfiguration {
@@ -21,15 +21,18 @@ public class TelegramConfiguration {
     @Value("My_course_work_by_skypro_bot")
     private String botName;
 
-}
+}*/
 
-/*
+
+
 @Configuration
 @RequiredArgsConstructor
 public class TelegramConfiguration {
 
-    private final TelegramProperties telegramProperties;
 
+    private final TelegramProperties telegramProperties;
+    @Value("${telegram.token}")
+    private String token;
 
     @Bean
     public TelegramBot telegramBot() {
@@ -37,4 +40,4 @@ public class TelegramConfiguration {
         bot.execute(new DeleteMyCommands());
         return bot;
     }
-}*/
+}
