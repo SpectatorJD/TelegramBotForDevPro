@@ -5,16 +5,14 @@ import org.springframework.stereotype.Service;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Вспомогательный класс для валидации входящих данных с помощью регулярных выражений
- */
+
 @Service
 public class ValidationRegularService {
 
     private static Pattern pattern;
     private static Matcher matcher;
 
-    //Ниже блок констант паттернов для разных проверок:
+
 
 
 
@@ -42,7 +40,7 @@ public class ValidationRegularService {
     //Часы и минуты, 24 hours format (HH:MM)
 
 
-    //Ниже блок самих методов validate:
+
     public static boolean validateName(String str) {
         pattern = Pattern.compile(NAME_PATTERN);
         matcher = pattern.matcher(str);
@@ -75,7 +73,7 @@ public class ValidationRegularService {
         pattern = Pattern.compile(TELEPHONE_PATTERN);
         matcher = pattern.matcher(str);
         return matcher.find();
-    } // хотел допускать наличие в str других слов помимо телефона(но пока не смог)
+    }
 
 
     public static boolean validateTime(String str) {
