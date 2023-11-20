@@ -11,10 +11,10 @@
 	</parent>
 
 	<groupId>com.example</groupId>
-	<artifactId>team-5-animal-shelter-telegram-bot</artifactId>
+	<artifactId>TelegramBotForDevPro</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>team-5-animal-shelter-telegram-bot</name>
-	<description>team-5-animal-shelter-telegram-bot</description>
+	<name>TelegramBotForDevPro</name>
+	<description>TelegramBotForDevPro</description>
 
 	<properties>
 		<java.version>17</java.version>
