@@ -112,7 +112,7 @@ public class BotUpdatesListener implements UpdatesListener {
             Long chatId = message.from().id();
             Customer customer;
 
-            // Ищем пользователя в базе, если нет - сохраняем
+
             if (customerRepository.existsByChatId(chatId)) {
                 customer = customerRepository.findByChatId(chatId).orElseThrow();
             } else {
@@ -122,7 +122,7 @@ public class BotUpdatesListener implements UpdatesListener {
                 );
             }
 
-            // Если сообщение пришло в ответ на сообщение бота, то обрабатываем в другом методе
+
             if (message.replyToMessage() != null) {
                 handleReplyToMessage(message);
                 return;
@@ -134,7 +134,7 @@ public class BotUpdatesListener implements UpdatesListener {
                 return;
             }
 
-            // Если это отдельное сообщение, то сверяем со списком команд из CommandType и запускаем выполнение при совпадении
+
             String command = message.text();
             CommandType commandType = CommandType.fromCommand(command);
             if (commandType == null) {
