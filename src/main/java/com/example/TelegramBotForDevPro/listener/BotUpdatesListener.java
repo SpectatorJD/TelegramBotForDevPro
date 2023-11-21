@@ -98,6 +98,22 @@ public class BotUpdatesListener implements UpdatesListener {
                 }
                 case REPORT -> botCommandService.runReport(chatId);
 
+
+                case TOPIC2 -> botCommandService.runTopic2(chatId, animalShelter);
+
+                case OPTION1 -> botCommandService.runOption1(chatId, animalShelter);
+                case OPTION2 -> botCommandService.runOption1(chatId, animalShelter);
+                case OPTION3 -> botCommandService.runOption1(chatId, animalShelter);
+                case OPTION4 -> botCommandService.runOption1(chatId, animalShelter);
+                case OPTION5_1 -> botCommandService.runOption1(chatId, animalShelter);
+                case OPTION5_2 -> botCommandService.runOption1(chatId, animalShelter);
+                case OPTION6 -> botCommandService.runOption1(chatId, animalShelter);
+                case OPTION7 -> botCommandService.runOption1(chatId, animalShelter);
+                case OPTION8 -> botCommandService.runOption1(chatId, animalShelter);
+                case OPTION9 -> botCommandService.runOption1(chatId, animalShelter);
+                case OPTION10 -> botCommandService.runOption1(chatId, animalShelter);
+                case OPTION11 -> botCommandService.runOption1(chatId, animalShelter);
+
             }
         } catch (Exception e) {
             logger.error("Ошибка обработки обратного вызова: {}", e.getMessage());
@@ -165,6 +181,22 @@ public class BotUpdatesListener implements UpdatesListener {
                     case SHELTER -> botCommandService.runShelter(chatId, animalShelter);
                     case SECURITY -> botCommandService.runSecurity(chatId, animalShelter);
                     case SAFETY -> botCommandService.runSafety(chatId, animalShelter);
+
+
+                    case TOPIC2 -> botCommandService.runTopic2(chatId, animalShelter);
+
+                    case OPTION1 -> botCommandService.runOption1(chatId, animalShelter);
+                    case OPTION2 -> botCommandService.runOption1(chatId, animalShelter);
+                    case OPTION3 -> botCommandService.runOption1(chatId, animalShelter);
+                    case OPTION4 -> botCommandService.runOption1(chatId, animalShelter);
+                    case OPTION5_1 -> botCommandService.runOption1(chatId, animalShelter);
+                    case OPTION5_2 -> botCommandService.runOption1(chatId, animalShelter);
+                    case OPTION6 -> botCommandService.runOption1(chatId, animalShelter);
+                    case OPTION7 -> botCommandService.runOption1(chatId, animalShelter);
+                    case OPTION8 -> botCommandService.runOption1(chatId, animalShelter);
+                    case OPTION9 -> botCommandService.runOption1(chatId, animalShelter);
+                    case OPTION10 -> botCommandService.runOption1(chatId, animalShelter);
+                    case OPTION11 -> botCommandService.runOption1(chatId, animalShelter);
                 }
             }
         } catch (Exception e) {

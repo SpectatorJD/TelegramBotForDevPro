@@ -64,4 +64,44 @@ public interface BotCommandService {
 
 
     void sendMessage(@NotNull Long chatId, String message);
+
+    void runTopic2(Long chatId);
+
+
+    void runOption1(Long chatId);
+
+
+    void runOption2(Long chatId);
+
+
+    void runOption3(Long chatId);
+
+
+    void runOption4(Long chatId);
+
+
+    void runOption5_1(Long chatId);
+
+
+    void runOption5_2(Long chatId);
+
+
+    void runOption6(Long chatId);
+
+
+    void runOption7(Long chatId);
+
+
+    void runOption8(Long chatId);
+
+
+    void runOption9(Long chatId);
+
+
+    void runOption10(Long chatId);
+
+
+    void runOption11(Long chatId);
 }
+
+
