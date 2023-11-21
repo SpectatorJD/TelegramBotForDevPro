@@ -11,9 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * Репозиторий для работы с кошками
- */
+
 @Repository
 public interface CatRepository extends JpaRepository<Cat, Integer> {
 
