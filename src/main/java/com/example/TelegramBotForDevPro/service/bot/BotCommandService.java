@@ -72,37 +72,37 @@ public interface BotCommandService {
     void runOption1(Long chatId, AnimalShelter animalShelter);
 
 
-    void runOption2(Long chatId);
+    void runOption2(Long chatId, AnimalShelter animalShelter);
 
 
-    void runOption3(Long chatId);
+    void runOption3(Long chatId, AnimalShelter animalShelter);
 
 
-    void runOption4(Long chatId);
+    void runOption4(Long chatId, AnimalShelter animalShelter);
 
 
-    void runOption5_1(Long chatId);
+    void runOption5_1(Long chatId, AnimalShelter animalShelter);
 
 
-    void runOption5_2(Long chatId);
+    void runOption5_2(Long chatId, AnimalShelter animalShelter);
 
 
-    void runOption6(Long chatId);
+    void runOption6(Long chatId, AnimalShelter animalShelter);
 
 
-    void runOption7(Long chatId);
+    void runOption7(Long chatId, AnimalShelter animalShelter);
 
 
-    void runOption8(Long chatId);
+    void runOption8(Long chatId, AnimalShelter animalShelter);
 
 
-    void runOption9(Long chatId);
+    void runOption9(Long chatId, AnimalShelter animalShelter);
 
 
-    void runOption10(Long chatId);
+    void runOption10(Long chatId, AnimalShelter animalShelter);
 
 
-    void runOption11(Long chatId);
+    void runOption11(Long chatId, AnimalShelter animalShelter);
 }
 
 

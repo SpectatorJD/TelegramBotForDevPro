@@ -523,7 +523,7 @@ public class BotCommandServiceImpl implements BotCommandService {
     }
 
     @Override
-    public void runOption2(Long chatId) {
+    public void runOption2(Long chatId, AnimalShelter animalShelter) {
         String message = "Список документов, необходимых для того, чтобы взять животное из приюта";
         SendMessage sendMessage = new SendMessage(chatId, message);
         sendMessage.parseMode(ParseMode.HTML);
@@ -531,7 +531,7 @@ public class BotCommandServiceImpl implements BotCommandService {
     }
 
     @Override
-    public void runOption3(Long chatId) {
+    public void runOption3(Long chatId, AnimalShelter animalShelter) {
         String message = "Список рекомендаций по транспортировке животного";
         SendMessage sendMessage = new SendMessage(chatId, message);
         sendMessage.parseMode(ParseMode.HTML);
@@ -539,7 +539,7 @@ public class BotCommandServiceImpl implements BotCommandService {
     }
 
     @Override
-    public void runOption4(Long chatId) {
+    public void runOption4(Long chatId, AnimalShelter animalShelter) {
         String message = "Выдать список рекомендаций по транспортировке животного";
         SendMessage sendMessage = new SendMessage(chatId, message);
         sendMessage.parseMode(ParseMode.HTML);
@@ -547,7 +547,7 @@ public class BotCommandServiceImpl implements BotCommandService {
     }
 
     @Override
-    public void runOption5_1(Long chatId) {
+    public void runOption5_1(Long chatId, AnimalShelter animalShelter) {
         String message = "Выдать список рекомендаций по обустройству дома для щенка";
         SendMessage sendMessage = new SendMessage(chatId, message);
         sendMessage.parseMode(ParseMode.HTML);
@@ -555,7 +555,7 @@ public class BotCommandServiceImpl implements BotCommandService {
     }
 
     @Override
-    public void runOption5_2(Long chatId) {
+    public void runOption5_2(Long chatId, AnimalShelter animalShelter) {
         String message = "Выдать список рекомендаций по обустройству дома для котенка";
         SendMessage sendMessage = new SendMessage(chatId, message);
         sendMessage.parseMode(ParseMode.HTML);
@@ -563,7 +563,7 @@ public class BotCommandServiceImpl implements BotCommandService {
     }
 
     @Override
-    public void runOption6(Long chatId) {
+    public void runOption6(Long chatId, AnimalShelter animalShelter) {
         String message = "Выдать список рекомендаций по обустройству дома для взрослого животного";
         SendMessage sendMessage = new SendMessage(chatId, message);
         sendMessage.parseMode(ParseMode.HTML);
@@ -571,7 +571,7 @@ public class BotCommandServiceImpl implements BotCommandService {
     }
 
     @Override
-    public void runOption7(Long chatId) {
+    public void runOption7(Long chatId, AnimalShelter animalShelter) {
         String message = "Выдать список рекомендаций по обустройству дома для животного с ограниченными возможностями " +
                 " (зрение, передвижение)";
         SendMessage sendMessage = new SendMessage(chatId, message);
@@ -581,7 +581,7 @@ public class BotCommandServiceImpl implements BotCommandService {
     }
 
     @Override
-    public void runOption8(Long chatId) {
+    public void runOption8(Long chatId, AnimalShelter animalShelter) {
         String message = "Выдать рекомендации по проверенным кинологам для дальнейшего обращения к ним";
         SendMessage sendMessage = new SendMessage(chatId, message);
         sendMessage.parseMode(ParseMode.HTML);
@@ -589,7 +589,7 @@ public class BotCommandServiceImpl implements BotCommandService {
     }
 
     @Override
-    public void runOption9(Long chatId) {
+    public void runOption9(Long chatId, AnimalShelter animalShelter) {
         String message = "Бот может выдать рекомендации по проверенным кинологам для дальнейшего обращения к ним";
         SendMessage sendMessage = new SendMessage(chatId, message);
         sendMessage.parseMode(ParseMode.HTML);
@@ -597,7 +597,7 @@ public class BotCommandServiceImpl implements BotCommandService {
     }
 
     @Override
-    public void runOption10(Long chatId) {
+    public void runOption10(Long chatId, AnimalShelter animalShelter) {
         String message = "Бот может выдать список причин, почему могут отказать и не дать забрать собаку из приюта";
         SendMessage sendMessage = new SendMessage(chatId, message);
         sendMessage.parseMode(ParseMode.HTML);
@@ -605,7 +605,7 @@ public class BotCommandServiceImpl implements BotCommandService {
     }
 
     @Override
-    public void runOption11(Long chatId) {
+    public void runOption11(Long chatId, AnimalShelter animalShelter) {
         String message = "Бот может принять и записать контактные данные для связи";
         SendMessage sendMessage = new SendMessage(chatId, message);
         sendMessage.parseMode(ParseMode.HTML);
