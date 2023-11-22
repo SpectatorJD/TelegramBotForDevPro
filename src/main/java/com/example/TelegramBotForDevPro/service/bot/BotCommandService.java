@@ -100,9 +100,6 @@ public interface BotCommandService {
 
 
     void runOption10(Long chatId, AnimalShelter animalShelter);
-
-
-    void runOption11(Long chatId, AnimalShelter animalShelter);
 }
 
 

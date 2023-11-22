@@ -112,8 +112,6 @@ public class BotUpdatesListener implements UpdatesListener {
                 case OPTION8 -> botCommandService.runOption8(chatId, animalShelter);
                 case OPTION9 -> botCommandService.runOption9(chatId, animalShelter);
                 case OPTION10 -> botCommandService.runOption10(chatId, animalShelter);
-                case OPTION11 -> botCommandService.runOption11(chatId, animalShelter);
-
             }
         } catch (Exception e) {
             logger.error("Ошибка обработки обратного вызова: {}", e.getMessage());
@@ -196,7 +194,6 @@ public class BotUpdatesListener implements UpdatesListener {
                     case OPTION8 -> botCommandService.runOption8(chatId, animalShelter);
                     case OPTION9 -> botCommandService.runOption9(chatId, animalShelter);
                     case OPTION10 -> botCommandService.runOption10(chatId, animalShelter);
-                    case OPTION11 -> botCommandService.runOption11(chatId, animalShelter);
                 }
             }
         } catch (Exception e) {

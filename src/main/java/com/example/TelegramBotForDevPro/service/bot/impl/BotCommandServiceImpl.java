@@ -486,8 +486,6 @@ public class BotCommandServiceImpl implements BotCommandService {
         InlineKeyboardButton option10Button = new InlineKeyboardButton(OPTION10.getDescription());
         option10Button.callbackData(OPTION10.toString());
 
-        InlineKeyboardButton option11Button = new InlineKeyboardButton(OPTION11.getDescription());
-        option11Button.callbackData(OPTION11.toString());
 
 
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
@@ -502,8 +500,7 @@ public class BotCommandServiceImpl implements BotCommandService {
                 .addRow(option7Button)
                 .addRow(option8Button)
                 .addRow(option9Button)
-                .addRow(option10Button)
-                .addRow(option11Button);
+                .addRow(option10Button);
 
 
         SendMessage sendMessage = new SendMessage(chatId, "*Выберите дополнительное действие*");
@@ -599,14 +596,6 @@ public class BotCommandServiceImpl implements BotCommandService {
     @Override
     public void runOption10(Long chatId, AnimalShelter animalShelter) {
         String message = "Выдать список причин, почему могут отказать и не дать забрать собаку из приюта";
-        SendMessage sendMessage = new SendMessage(chatId, message);
-        sendMessage.parseMode(ParseMode.HTML);
-        telegramBot.execute(sendMessage);
-    }
-
-    @Override
-    public void runOption11(Long chatId, AnimalShelter animalShelter) {
-        String message = "Принять и записать контактные данные для связи";
         SendMessage sendMessage = new SendMessage(chatId, message);
         sendMessage.parseMode(ParseMode.HTML);
         telegramBot.execute(sendMessage);
