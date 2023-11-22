@@ -184,6 +184,7 @@ public class BotUpdatesListener implements UpdatesListener {
 
 
                     case TOPIC2 -> botCommandService.runTopic2(chatId, animalShelter);
+
                     case OPTION1 -> botCommandService.runOption1(chatId, animalShelter);
                     case OPTION2 -> botCommandService.runOption2(chatId, animalShelter);
                     case OPTION3 -> botCommandService.runOption3(chatId, animalShelter);

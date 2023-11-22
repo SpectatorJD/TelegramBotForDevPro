@@ -582,7 +582,7 @@ public class BotCommandServiceImpl implements BotCommandService {
 
     @Override
     public void runOption8(Long chatId, AnimalShelter animalShelter) {
-        String message = "Выдать рекомендации по проверенным кинологам для дальнейшего обращения к ним";
+        String message = "Выдать советы кинолога по первичному общению с собакой";
         SendMessage sendMessage = new SendMessage(chatId, message);
         sendMessage.parseMode(ParseMode.HTML);
         telegramBot.execute(sendMessage);
@@ -590,7 +590,7 @@ public class BotCommandServiceImpl implements BotCommandService {
 
     @Override
     public void runOption9(Long chatId, AnimalShelter animalShelter) {
-        String message = "Бот может выдать рекомендации по проверенным кинологам для дальнейшего обращения к ним";
+        String message = "Выдать рекомендации по проверенным кинологам для дальнейшего обращения к ним";
         SendMessage sendMessage = new SendMessage(chatId, message);
         sendMessage.parseMode(ParseMode.HTML);
         telegramBot.execute(sendMessage);
@@ -598,7 +598,7 @@ public class BotCommandServiceImpl implements BotCommandService {
 
     @Override
     public void runOption10(Long chatId, AnimalShelter animalShelter) {
-        String message = "Бот может выдать список причин, почему могут отказать и не дать забрать собаку из приюта";
+        String message = "Выдать список причин, почему могут отказать и не дать забрать собаку из приюта";
         SendMessage sendMessage = new SendMessage(chatId, message);
         sendMessage.parseMode(ParseMode.HTML);
         telegramBot.execute(sendMessage);
@@ -606,7 +606,7 @@ public class BotCommandServiceImpl implements BotCommandService {
 
     @Override
     public void runOption11(Long chatId, AnimalShelter animalShelter) {
-        String message = "Бот может принять и записать контактные данные для связи";
+        String message = "Принять и записать контактные данные для связи";
         SendMessage sendMessage = new SendMessage(chatId, message);
         sendMessage.parseMode(ParseMode.HTML);
         telegramBot.execute(sendMessage);
