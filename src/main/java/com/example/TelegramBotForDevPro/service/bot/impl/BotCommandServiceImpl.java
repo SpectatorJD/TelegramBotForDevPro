@@ -448,17 +448,74 @@ public class BotCommandServiceImpl implements BotCommandService {
         }
     }
     @Override
-    public void runTopic2(Long chatId) {
-        String message = "Консультация с потенциальным хозяином животного из приюта";
-        SendMessage sendMessage = new SendMessage(chatId, message);
-        sendMessage.parseMode(ParseMode.HTML);
-        telegramBot.execute(sendMessage);
+    public void runTopic2(Long chatId, AnimalShelter animalShelter) {
+//        String message = "Консультация с потенциальным хозяином животного из приюта";
+//        SendMessage sendMessage = new SendMessage(chatId, message);
+//        sendMessage.parseMode(ParseMode.HTML);
+//        telegramBot.execute(sendMessage);
+        InlineKeyboardButton option1Button = new InlineKeyboardButton(OPTION1.getDescription());
+        option1Button.callbackData(OPTION1.toString());
 
+        InlineKeyboardButton option2Button = new InlineKeyboardButton(OPTION2.getDescription());
+        option2Button.callbackData(OPTION2.toString());
+
+        InlineKeyboardButton option3Button = new InlineKeyboardButton(OPTION3.getDescription());
+        option3Button.callbackData(OPTION3.toString());
+
+        InlineKeyboardButton option4Button = new InlineKeyboardButton(OPTION4.getDescription());
+        option4Button.callbackData(OPTION4.toString());
+
+        InlineKeyboardButton option5_1Button = new InlineKeyboardButton(OPTION5_1.getDescription());
+        option5_1Button.callbackData(OPTION5_1.toString());
+
+        InlineKeyboardButton option5_2Button = new InlineKeyboardButton(OPTION5_2.getDescription());
+        option5_2Button.callbackData(OPTION5_2.toString());
+
+        InlineKeyboardButton option6Button = new InlineKeyboardButton(OPTION6.getDescription());
+        option6Button.callbackData(OPTION6.toString());
+
+        InlineKeyboardButton option7Button = new InlineKeyboardButton(OPTION7.getDescription());
+        option7Button.callbackData(OPTION7.toString());
+
+        InlineKeyboardButton option8Button = new InlineKeyboardButton(OPTION8.getDescription());
+        option8Button.callbackData(OPTION8.toString());
+
+        InlineKeyboardButton option9Button = new InlineKeyboardButton(OPTION9.getDescription());
+        option9Button.callbackData(OPTION9.toString());
+
+        InlineKeyboardButton option10Button = new InlineKeyboardButton(OPTION10.getDescription());
+        option10Button.callbackData(OPTION10.toString());
+
+        InlineKeyboardButton option11Button = new InlineKeyboardButton(OPTION11.getDescription());
+        option11Button.callbackData(OPTION11.toString());
+
+
+        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
+        inlineKeyboardMarkup
+                .addRow(option1Button)
+                .addRow(option2Button)
+                .addRow(option3Button)
+                .addRow(option4Button)
+                .addRow(option5_1Button)
+                .addRow(option5_2Button)
+                .addRow(option6Button)
+                .addRow(option7Button)
+                .addRow(option8Button)
+                .addRow(option9Button)
+                .addRow(option10Button)
+                .addRow(option11Button);
+
+
+        SendMessage sendMessage = new SendMessage(chatId, "*Выберите дополнительное действие*");
+        sendMessage.replyMarkup(inlineKeyboardMarkup);
+
+
+        prepareAndExecuteMessage(sendMessage);
 
     }
 
     @Override
-    public void runOption1(Long chatId) {
+    public void runOption1(Long chatId, AnimalShelter animalShelter) {
         String message = "Правила знакомства с животным до того, как забрать его из приюта";
         SendMessage sendMessage = new SendMessage(chatId, message);
         sendMessage.parseMode(ParseMode.HTML);
@@ -520,6 +577,7 @@ public class BotCommandServiceImpl implements BotCommandService {
         SendMessage sendMessage = new SendMessage(chatId, message);
         sendMessage.parseMode(ParseMode.HTML);
         telegramBot.execute(sendMessage);
+
     }
 
     @Override

@@ -1,7 +1,6 @@
 package com.example.TelegramBotForDevPro.service.bot;
 
 
-import com.example.TelegramBotForDevPro.configuration.CommandType;
 import com.example.TelegramBotForDevPro.entity.person.Customer;
 import com.example.TelegramBotForDevPro.entity.shelter.AnimalShelter;
 import com.pengrad.telegrambot.model.Message;
@@ -65,10 +64,12 @@ public interface BotCommandService {
 
     void sendMessage(@NotNull Long chatId, String message);
 
-    void runTopic2(Long chatId);
 
 
-    void runOption1(Long chatId);
+    void runTopic2(Long chatId, AnimalShelter animalShelter);
+
+
+    void runOption1(Long chatId, AnimalShelter animalShelter);
 
 
     void runOption2(Long chatId);
