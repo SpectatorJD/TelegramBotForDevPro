@@ -65,7 +65,6 @@ public interface BotCommandService {
     void sendMessage(@NotNull Long chatId, String message);
 
 
-
     void runTopic2(Long chatId, AnimalShelter animalShelter);
 
 

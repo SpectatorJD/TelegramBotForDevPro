@@ -42,41 +42,26 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-;import static com.example.TelegramBotForDevPro.configuration.CommandType.*;
+import static com.example.TelegramBotForDevPro.configuration.CommandType.*;
 import static com.example.TelegramBotForDevPro.service.ValidationRegularService.validateTelephone;
 
 @Service
 @RequiredArgsConstructor
 public class BotCommandServiceImpl implements BotCommandService {
 
-    private final Logger logger = LoggerFactory.getLogger(BotCommandServiceImpl.class);
-
-    private final TelegramBot telegramBot;
-
-    private final TelegramProperties telegramProperties;
-
-    private final CustomerRepository customerRepository;
-
-    @Autowired
-    private AnimalReportService animalReportService;
-
-
     public static final String PHONE = "Чтобы мы могли с Вами связаться, напишите в чат Ваш номер телефона.";
     public static final String PHONE_AGAIN = "Номер телефона не прошел проверку, пожалуйста, попробуйте еще раз.";
     public static final String VOLUNTEER_MESSAGE = "Пожалуйста, напишите в чат по какому вопросу Вы обращаетесь.";
-
     private static final String MESSAGE = """
             (ID животного:)(\\s+)(\\d+)(;|;\\s+)
             (Рацион:)(\\s+)([А-я\\d\\s.,!?:]+)(;|;\\s+)
             (Здоровье:)(\\s+)([А-я\\d\\s.,!?:]+)(;|;\\s+)
             (Поведение:)(\\s+)([А-я\\d\\s.,!?:]+)(\\.|\\.\\s+)""";
-
     private static final String EXAMPLE_REPORT = """
             ID животного: 1;
             Рацион: Ваш текст;
             Здоровье: Ваш текст;
             Поведение: Ваш текст.""";
-
     private static final String INFO_REPORT = """
             <b>Для отчета нужна следующая информация:</b>
             Фото животного
@@ -85,6 +70,12 @@ public class BotCommandServiceImpl implements BotCommandService {
             Общее самочувствие и привыкание к новому месту
             Изменение в поведении: отказ от старых привычек, приобретение новых
             Скопируйте следующий пример. Не забудьте прикрепить фото!""";
+    private final Logger logger = LoggerFactory.getLogger(BotCommandServiceImpl.class);
+    private final TelegramBot telegramBot;
+    private final TelegramProperties telegramProperties;
+    private final CustomerRepository customerRepository;
+    @Autowired
+    private AnimalReportService animalReportService;
 
     @Override
     public void runAbout(@NotNull Customer customer) {
@@ -447,6 +438,7 @@ public class BotCommandServiceImpl implements BotCommandService {
             throw new MessageException(msg);
         }
     }
+
     @Override
     public void runTopic2(Long chatId, AnimalShelter animalShelter) {
 //        String message = "Консультация с потенциальным хозяином животного из приюта";
@@ -485,7 +477,6 @@ public class BotCommandServiceImpl implements BotCommandService {
 
         InlineKeyboardButton option10Button = new InlineKeyboardButton(OPTION10.getDescription());
         option10Button.callbackData(OPTION10.toString());
-
 
 
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
