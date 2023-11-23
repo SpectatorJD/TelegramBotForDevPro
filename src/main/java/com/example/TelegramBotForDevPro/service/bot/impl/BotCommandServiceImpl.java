@@ -135,6 +135,7 @@ public class BotCommandServiceImpl implements BotCommandService {
 
         // Отображение кнопок
         runDialogAnimalShelter(chatId);
+        runCatConsultation(chatId, shelter);
     }
 
     @Override
@@ -144,6 +145,7 @@ public class BotCommandServiceImpl implements BotCommandService {
 
 
         runDialogAnimalShelter(chatId);
+        runDogConsultation(chatId,shelter);
     }
 
     @Override
@@ -438,13 +440,56 @@ public class BotCommandServiceImpl implements BotCommandService {
             throw new MessageException(msg);
         }
     }
-
     @Override
-    public void runTopic2(Long chatId, AnimalShelter animalShelter) {
-//        String message = "Консультация с потенциальным хозяином животного из приюта";
-//        SendMessage sendMessage = new SendMessage(chatId, message);
-//        sendMessage.parseMode(ParseMode.HTML);
-//        telegramBot.execute(sendMessage);
+    public void runCatConsultation(Long chatId, AnimalShelter animalShelter) {
+
+        InlineKeyboardButton option1Button = new InlineKeyboardButton(OPTION1.getDescription());
+        option1Button.callbackData(OPTION1.toString());
+
+        InlineKeyboardButton option2Button = new InlineKeyboardButton(OPTION2.getDescription());
+        option2Button.callbackData(OPTION2.toString());
+
+        InlineKeyboardButton option3Button = new InlineKeyboardButton(OPTION3.getDescription());
+        option3Button.callbackData(OPTION3.toString());
+
+        InlineKeyboardButton option4Button = new InlineKeyboardButton(OPTION4.getDescription());
+        option4Button.callbackData(OPTION4.toString());
+
+        InlineKeyboardButton option5_2Button = new InlineKeyboardButton(OPTION5_2.getDescription());
+        option5_2Button.callbackData(OPTION5_2.toString());
+
+        InlineKeyboardButton option6Button = new InlineKeyboardButton(OPTION6.getDescription());
+        option6Button.callbackData(OPTION6.toString());
+
+        InlineKeyboardButton option7Button = new InlineKeyboardButton(OPTION7.getDescription());
+        option7Button.callbackData(OPTION7.toString());
+
+        InlineKeyboardButton option10Button = new InlineKeyboardButton(OPTION10.getDescription());
+        option10Button.callbackData(OPTION10.toString());
+
+
+        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
+        inlineKeyboardMarkup
+                .addRow(option1Button)
+                .addRow(option2Button)
+                .addRow(option3Button)
+                .addRow(option4Button)
+                .addRow(option5_2Button)
+                .addRow(option6Button)
+                .addRow(option7Button)
+                .addRow(option10Button);
+
+
+        SendMessage sendMessage = new SendMessage(chatId, "*Выберите что вас интересует*");
+        sendMessage.replyMarkup(inlineKeyboardMarkup);
+
+
+        prepareAndExecuteMessage(sendMessage);
+
+    }
+    @Override
+    public void runDogConsultation(Long chatId, AnimalShelter animalShelter) {
+
         InlineKeyboardButton option1Button = new InlineKeyboardButton(OPTION1.getDescription());
         option1Button.callbackData(OPTION1.toString());
 
@@ -459,9 +504,6 @@ public class BotCommandServiceImpl implements BotCommandService {
 
         InlineKeyboardButton option5_1Button = new InlineKeyboardButton(OPTION5_1.getDescription());
         option5_1Button.callbackData(OPTION5_1.toString());
-
-        InlineKeyboardButton option5_2Button = new InlineKeyboardButton(OPTION5_2.getDescription());
-        option5_2Button.callbackData(OPTION5_2.toString());
 
         InlineKeyboardButton option6Button = new InlineKeyboardButton(OPTION6.getDescription());
         option6Button.callbackData(OPTION6.toString());
@@ -486,7 +528,6 @@ public class BotCommandServiceImpl implements BotCommandService {
                 .addRow(option3Button)
                 .addRow(option4Button)
                 .addRow(option5_1Button)
-                .addRow(option5_2Button)
                 .addRow(option6Button)
                 .addRow(option7Button)
                 .addRow(option8Button)
@@ -494,7 +535,7 @@ public class BotCommandServiceImpl implements BotCommandService {
                 .addRow(option10Button);
 
 
-        SendMessage sendMessage = new SendMessage(chatId, "*Выберите дополнительное действие*");
+        SendMessage sendMessage = new SendMessage(chatId, "*Выберите что вас интересует*");
         sendMessage.replyMarkup(inlineKeyboardMarkup);
 
 
@@ -528,7 +569,7 @@ public class BotCommandServiceImpl implements BotCommandService {
 
     @Override
     public void runOption4(Long chatId, AnimalShelter animalShelter) {
-        String message = "Выдать список рекомендаций по транспортировке животного";
+        String message = "Список рекомендаций по транспортировке животного";
         SendMessage sendMessage = new SendMessage(chatId, message);
         sendMessage.parseMode(ParseMode.HTML);
         telegramBot.execute(sendMessage);
@@ -536,7 +577,7 @@ public class BotCommandServiceImpl implements BotCommandService {
 
     @Override
     public void runOption5_1(Long chatId, AnimalShelter animalShelter) {
-        String message = "Выдать список рекомендаций по обустройству дома для щенка";
+        String message = "Список рекомендаций по обустройству дома для щенка";
         SendMessage sendMessage = new SendMessage(chatId, message);
         sendMessage.parseMode(ParseMode.HTML);
         telegramBot.execute(sendMessage);
@@ -544,7 +585,7 @@ public class BotCommandServiceImpl implements BotCommandService {
 
     @Override
     public void runOption5_2(Long chatId, AnimalShelter animalShelter) {
-        String message = "Выдать список рекомендаций по обустройству дома для котенка";
+        String message = "Список рекомендаций по обустройству дома для котенка";
         SendMessage sendMessage = new SendMessage(chatId, message);
         sendMessage.parseMode(ParseMode.HTML);
         telegramBot.execute(sendMessage);
@@ -552,7 +593,7 @@ public class BotCommandServiceImpl implements BotCommandService {
 
     @Override
     public void runOption6(Long chatId, AnimalShelter animalShelter) {
-        String message = "Выдать список рекомендаций по обустройству дома для взрослого животного";
+        String message = "Список рекомендаций по обустройству дома для взрослого животного";
         SendMessage sendMessage = new SendMessage(chatId, message);
         sendMessage.parseMode(ParseMode.HTML);
         telegramBot.execute(sendMessage);
@@ -560,7 +601,7 @@ public class BotCommandServiceImpl implements BotCommandService {
 
     @Override
     public void runOption7(Long chatId, AnimalShelter animalShelter) {
-        String message = "Выдать список рекомендаций по обустройству дома для животного с ограниченными возможностями " +
+        String message = "Список рекомендаций по обустройству дома для животного с ограниченными возможностями " +
                 " (зрение, передвижение)";
         SendMessage sendMessage = new SendMessage(chatId, message);
         sendMessage.parseMode(ParseMode.HTML);
@@ -570,7 +611,7 @@ public class BotCommandServiceImpl implements BotCommandService {
 
     @Override
     public void runOption8(Long chatId, AnimalShelter animalShelter) {
-        String message = "Выдать советы кинолога по первичному общению с собакой";
+        String message = "Советы кинолога по первичному общению с собакой";
         SendMessage sendMessage = new SendMessage(chatId, message);
         sendMessage.parseMode(ParseMode.HTML);
         telegramBot.execute(sendMessage);
@@ -578,7 +619,7 @@ public class BotCommandServiceImpl implements BotCommandService {
 
     @Override
     public void runOption9(Long chatId, AnimalShelter animalShelter) {
-        String message = "Выдать рекомендации по проверенным кинологам для дальнейшего обращения к ним";
+        String message = "Рекомендации по проверенным кинологам для дальнейшего обращения к ним";
         SendMessage sendMessage = new SendMessage(chatId, message);
         sendMessage.parseMode(ParseMode.HTML);
         telegramBot.execute(sendMessage);
@@ -586,7 +627,7 @@ public class BotCommandServiceImpl implements BotCommandService {
 
     @Override
     public void runOption10(Long chatId, AnimalShelter animalShelter) {
-        String message = "Выдать список причин, почему могут отказать и не дать забрать собаку из приюта";
+        String message = "Список причин, почему могут отказать и не дать забрать собаку из приюта";
         SendMessage sendMessage = new SendMessage(chatId, message);
         sendMessage.parseMode(ParseMode.HTML);
         telegramBot.execute(sendMessage);

@@ -99,7 +99,8 @@ public class BotUpdatesListener implements UpdatesListener {
                 case REPORT -> botCommandService.runReport(chatId);
 
 
-                case TOPIC2 -> botCommandService.runTopic2(chatId, animalShelter);
+                case CAT_CONSULTATION -> botCommandService.runCatConsultation(chatId, animalShelter);
+                case DOG_CONSULTATION -> botCommandService.runDogConsultation(chatId,animalShelter);
 
                 case OPTION1 -> botCommandService.runOption1(chatId, animalShelter);
                 case OPTION2 -> botCommandService.runOption2(chatId, animalShelter);
@@ -181,7 +182,8 @@ public class BotUpdatesListener implements UpdatesListener {
                     case SAFETY -> botCommandService.runSafety(chatId, animalShelter);
 
 
-                    case TOPIC2 -> botCommandService.runTopic2(chatId, animalShelter);
+                    case CAT_CONSULTATION -> botCommandService.runCatConsultation(chatId, animalShelter);
+                    case DOG_CONSULTATION -> botCommandService.runDogConsultation(chatId,animalShelter);
 
                     case OPTION1 -> botCommandService.runOption1(chatId, animalShelter);
                     case OPTION2 -> botCommandService.runOption2(chatId, animalShelter);
