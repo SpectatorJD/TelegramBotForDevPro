@@ -561,7 +561,7 @@ public class BotCommandServiceImpl implements BotCommandService {
 
     @Override
     public void runOption3(Long chatId, AnimalShelter animalShelter) {
-        String message = "Список рекомендаций по транспортировке животного";
+        String message = "Список документов, необходимых для того, чтобы взять животное из приюта.";
         SendMessage sendMessage = new SendMessage(chatId, message);
         sendMessage.parseMode(ParseMode.HTML);
         telegramBot.execute(sendMessage);
