@@ -141,7 +141,7 @@ public class BotCommandServiceImpl implements BotCommandService {
     @Override
     public void runDogs(Long chatId, AnimalShelter shelter) {
 
-        sendPhotoShelter(chatId, shelter);
+       // sendPhotoShelter(chatId, shelter);
 
 
         runDialogAnimalShelter(chatId);
