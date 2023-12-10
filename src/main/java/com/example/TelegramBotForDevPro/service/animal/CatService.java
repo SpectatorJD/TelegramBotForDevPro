@@ -5,6 +5,7 @@ import com.example.TelegramBotForDevPro.entity.animal.Cat;
 import com.example.TelegramBotForDevPro.entity.person.Customer;
 import com.example.TelegramBotForDevPro.repository.animal.CatRepository;
 
+import com.example.TelegramBotForDevPro.timer.ProbationType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Сервис для работы с кошками
- */
+
 @Service
 public class CatService {
 
@@ -26,13 +25,7 @@ public class CatService {
         this.catRepository = catRepository;
     }
 
-    /**
-     * Сохраняет заданную сущность.
-     * Используется метод репозитория {@link JpaRepository#save(Object)}
-     *
-     * @param cat сохраняемая сущность
-     * @return {@code true} - сущность сохранена, {@code false} - сущность не сохранена
-     */
+
     public boolean save(Cat cat) {
         if (!(cat == null
                 || (cat.getName() == null || cat.getName().isBlank())
@@ -45,72 +38,32 @@ public class CatService {
         return false;
     }
 
-    /**
-     * Возвращает сущность по её идентификатору.
-     * Используется метод репозитория {@link JpaRepository#findById(Object)}
-     *
-     * @param id идентификатор сущности
-     * @return возвращаемая сущность
-     */
+
     public Optional<Cat> findById(int id) {
         return catRepository.findById(id);
     }
 
-    /**
-     * Возвращает список сущностей по значению состояния здоровья.
-     * Используется метод репозитория {@link CatRepository#findAllByHealth(Boolean)}
-     *
-     * @param isHealthy состояние здоровья ({@code true} - здоров, {@code false} - не здоров)
-     * @return список возвращаемых сущностей
-     */
+
     public List<Cat> findAllByHealth(Boolean isHealthy) {
         return catRepository.findAllByHealth(isHealthy);
     }
 
-    /**
-     * Возвращает список сущностей по значению наличия/отсутствия вакцинации.
-     * Используется метод репозитория {@link CatRepository#findAllByVaccination(Boolean)}
-     *
-     * @param isVaccinated наличие вакцинации ({@code true} - вакцинирован, {@code false} - не вакцинирован)
-     * @return список возвращаемых сущностей
-     */
+
     public List<Cat> findAllByVaccinate(Boolean isVaccinated) {
         return catRepository.findAllByVaccination(isVaccinated);
     }
 
-    /**
-     * Возвращает список сущностей по значению состояния здоровья и/или значению наличия/отсутствия вакцинации.
-     * Используется метод репозитория {@link CatRepository#findAllByHealthAndVaccination(Boolean, Boolean)}
-     *
-     * @param isHealthy    состояние здоровья ({@code true} - здоров, {@code false} - не здоров)
-     * @param isVaccinated наличие вакцинации ({@code true} - вакцинирован, {@code false} - не вакцинирован)
-     * @return список возвращаемых сущностей
-     */
+
     public List<Cat> findAllByHealthAndVaccination(Boolean isHealthy, Boolean isVaccinated) {
         return catRepository.findAllByHealthAndVaccination(isHealthy, isVaccinated);
     }
 
-    /**
-     * Возвращает список всех сущностей.
-     * Используется метод репозитория {@link JpaRepository#findAll()}
-     *
-     * @return список возвращаемых сущностей
-     */
+
     public List<Cat> findAll() {
         return catRepository.findAll();
     }
 
-    /**
-     * Обновляет сущность по передаваемым параметрам.
-     * Используется метод репозитория {@link CatRepository#updateById(Integer, String, Integer, Boolean, Boolean)}
-     *
-     * @param id           идентификатор сущности
-     * @param name         имя сущности
-     * @param age          возраст сущности
-     * @param isHealthy    состояние здоровья сущности ({@code true} - здоров, {@code false} - не здоров)
-     * @param isVaccinated наличие вакцинации сущности ({@code true} - вакцинирован, {@code false} - не вакцинирован)
-     * @return число ({@code 1} - сущность обновлена, {@code 0} - сущность не обновлена)
-     */
+
     public Integer updateById(Integer id, String name, Integer age, Boolean isHealthy, Boolean isVaccinated) {
         Optional<Cat> cat = findById(id);
         if (cat.isEmpty()
@@ -125,13 +78,7 @@ public class CatService {
         }
     }
 
-    /**
-     * Удаляет сущность по её идентификатору.
-     * Используется метод репозитория {@link JpaRepository#deleteById(Object)}
-     *
-     * @param id идентификатор удаляемой сущности
-     * @return {@code true} - сущность сохранена, {@code false} - сущность не сохранена
-     */
+
     public Boolean deleteById(int id) {
         Optional<Cat> findCatById = findById(id);
         if (findCatById.isEmpty()) {
@@ -140,14 +87,14 @@ public class CatService {
         catRepository.deleteById(id);
         return true;
     }
+    public List<Cat> findOnProbation(ProbationType... probationTypes) {
+        List<Integer> integers = new ArrayList<>();
+        for (ProbationType probation : probationTypes) {
+            integers.add(probation.getId());
+        }
+        return catRepository.findByProbationIn(integers);
+    }
 
-    /**
-     * Регистрирует усыновление кошки посетителем, добавляет текущую дату регистрации
-     *
-     * @param cat           кошка
-     * @param customer      посетитель
-     * @param probationType испытательный срок
-     * @return {@code true} - сущность обновлена, {@code false} - сущность не обновлена
-     */
+
 
 }

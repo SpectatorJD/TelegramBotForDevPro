@@ -18,7 +18,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-
 import javax.validation.constraints.Positive;
 import java.util.List;
 
@@ -218,7 +217,7 @@ public class CatController {
             @ApiResponse(responseCode = "400", description = "Параметры запроса отсутствуют или имеют некорректный формат")})
     @PutMapping("/adopt")
     public ResponseEntity<Boolean> adopt(
-            @RequestParam @Positive Integer catId,
+            @RequestParam @PositivePositive Integer catId,
             @RequestParam @Positive Integer customerId) {
         try {
             Cat cat = catService.findById(catId).orElseThrow();

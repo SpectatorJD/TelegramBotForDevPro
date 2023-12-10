@@ -7,6 +7,7 @@ import com.example.TelegramBotForDevPro.entity.person.Customer;
 import com.example.TelegramBotForDevPro.entity.person.Employee;
 import com.example.TelegramBotForDevPro.exception.ValidationException;
 import com.example.TelegramBotForDevPro.service.ValidationRegularService;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
@@ -50,9 +51,10 @@ public class AnimalShelter extends NamedEntity {
     @JoinTable(name = "ANIMAL_SHELTER_CUSTOMER_LINK",
             joinColumns = @JoinColumn(name = "ANIMAL_SHELTER_ID"),
             inverseJoinColumns = @JoinColumn(name = "CUSTOMER_ID"))
+    @JsonIgnore
     @ManyToMany
     private List<Customer> customers;
-
+    @JsonIgnore
     @JoinTable(name = "ANIMAL_SHELTER_EMPLOYEE_LINK",
             joinColumns = @JoinColumn(name = "ANIMAL_SHELTER_ID"),
             inverseJoinColumns = @JoinColumn(name = "EMPLOYEE_ID"))
@@ -168,7 +170,7 @@ public class AnimalShelter extends NamedEntity {
         this.employees = employees;
     }
 
-    @Override
+  @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
