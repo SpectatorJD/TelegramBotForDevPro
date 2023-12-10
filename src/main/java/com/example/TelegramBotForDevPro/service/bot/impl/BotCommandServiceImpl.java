@@ -130,22 +130,24 @@ public class BotCommandServiceImpl implements BotCommandService {
 
     @Override
     public void runCats(Long chatId, AnimalShelter shelter) {
-        // Отправка картинки
-        sendPhotoShelter(chatId, shelter);
 
         // Отображение кнопок
         runDialogAnimalShelter(chatId);
         runCatConsultation(chatId, shelter);
+
+        // Отправка картинки
+        sendPhotoShelter(chatId, shelter);
     }
 
     @Override
     public void runDogs(Long chatId, AnimalShelter shelter) {
 
-       // sendPhotoShelter(chatId, shelter);
-
-
+        // Отображение кнопок
         runDialogAnimalShelter(chatId);
         runDogConsultation(chatId,shelter);
+
+        // Отправка картинки
+        sendPhotoShelter(chatId, shelter);
     }
 
     @Override
@@ -480,7 +482,7 @@ public class BotCommandServiceImpl implements BotCommandService {
                 .addRow(option10Button);
 
 
-        SendMessage sendMessage = new SendMessage(chatId, "*Выберите что вас интересует*");
+        SendMessage sendMessage = new SendMessage(chatId, "*Консультация с потенциальным хозяином животного из приюта котов*");
         sendMessage.replyMarkup(inlineKeyboardMarkup);
 
 
@@ -535,7 +537,7 @@ public class BotCommandServiceImpl implements BotCommandService {
                 .addRow(option10Button);
 
 
-        SendMessage sendMessage = new SendMessage(chatId, "*Выберите что вас интересует*");
+        SendMessage sendMessage = new SendMessage(chatId, "*Консультация с потенциальным хозяином животного из приюта собак*");
         sendMessage.replyMarkup(inlineKeyboardMarkup);
 
 
