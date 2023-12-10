@@ -1,7 +1,6 @@
 package com.example.TelegramBotForDevPro.controller.animal;
 
 
-import com.example.TelegramBotForDevPro.entity.person.Customer;
 import com.example.TelegramBotForDevPro.repository.person.CustomerRepository;
 import com.example.TelegramBotForDevPro.service.animal.DogService;
 
@@ -9,7 +8,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentMatchers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -20,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 
-import static com.example.TelegramBotForDevPro.AnimalTest.AnimalConstants.*;
+import static com.example.TelegramBotForDevPro.animalTest.AnimalConstants.*;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;

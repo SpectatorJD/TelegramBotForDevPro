@@ -1,4 +1,4 @@
-package com.example.TelegramBotForDevPro.AnimalTest;
+package com.example.TelegramBotForDevPro.animalTest;
 
 public class ShelterConstants {
     public static final String CORRECT_NAME =  "Your true friend";

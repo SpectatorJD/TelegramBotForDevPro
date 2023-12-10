@@ -5,7 +5,7 @@ import com.example.TelegramBotForDevPro.entity.shelter.CatShelter;
 import com.example.TelegramBotForDevPro.service.shelter.impl.ShelterServiceImpl;
 import org.junit.jupiter.api.Test;
 
-import static com.example.TelegramBotForDevPro.AnimalTest.ShelterConstants.*;
+import static com.example.TelegramBotForDevPro.animalTest.ShelterConstants.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 

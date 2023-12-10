@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-import static com.example.TelegramBotForDevPro.AnimalTest.ShelterConstants.DEFAULT_NAME;
+import static com.example.TelegramBotForDevPro.animalTest.ShelterConstants.DEFAULT_NAME;
 import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;

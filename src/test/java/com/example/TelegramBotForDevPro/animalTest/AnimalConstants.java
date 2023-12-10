@@ -1,4 +1,4 @@
-package com.example.TelegramBotForDevPro.AnimalTest;
+package com.example.TelegramBotForDevPro.animalTest;
 
 
 

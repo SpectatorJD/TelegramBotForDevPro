@@ -10,7 +10,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
 ;
-import static com.example.TelegramBotForDevPro.AnimalTest.AnimalConstants.*;
+import static com.example.TelegramBotForDevPro.animalTest.AnimalConstants.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
