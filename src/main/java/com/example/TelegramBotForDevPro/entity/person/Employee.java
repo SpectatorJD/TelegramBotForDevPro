@@ -2,6 +2,7 @@ package com.example.TelegramBotForDevPro.entity.person;
 
 
 import com.example.TelegramBotForDevPro.entity.shelter.AnimalShelter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ public class Employee extends Person {
     @JoinTable(name = "ANIMAL_SHELTER_EMPLOYEE_LINK",
             joinColumns = @JoinColumn(name = "EMPLOYEE_ID", referencedColumnName = "ID"),
             inverseJoinColumns = @JoinColumn(name = "ANIMAL_SHELTER_ID", referencedColumnName = "ID"))
+    @JsonIgnore
     @ManyToMany
     private List<AnimalShelter> animalShelters;
 

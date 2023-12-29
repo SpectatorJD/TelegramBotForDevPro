@@ -131,7 +131,7 @@ public class BotCommandServiceImpl implements BotCommandService {
     @Override
     public void runCats(Long chatId, AnimalShelter shelter) {
         // Отправка картинки
-        sendPhotoShelter(chatId, shelter);
+       // sendPhotoShelter(chatId, shelter);
 
         // Отображение кнопок
         runDialogAnimalShelter(chatId);

@@ -5,6 +5,7 @@ package com.example.TelegramBotForDevPro.entity.animal;
 import com.example.TelegramBotForDevPro.entity.NamedEntity;
 import com.example.TelegramBotForDevPro.entity.person.Customer;
 import com.example.TelegramBotForDevPro.entity.report.AnimalReport;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 import javax.persistence.*;
@@ -31,6 +32,7 @@ public class Animal extends NamedEntity {
     private Boolean isVaccinated;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "CUSTOMER_ID")
     private Customer adopter;
 

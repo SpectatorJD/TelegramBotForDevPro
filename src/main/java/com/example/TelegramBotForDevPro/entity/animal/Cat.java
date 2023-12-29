@@ -2,6 +2,7 @@ package com.example.TelegramBotForDevPro.entity.animal;
 
 
 import com.example.TelegramBotForDevPro.entity.shelter.CatShelter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -12,6 +13,7 @@ import javax.persistence.*;
 public class Cat extends Animal {
 
     @JoinColumn(name = "CAT_SHELTER_ID")
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private CatShelter catShelter;
 

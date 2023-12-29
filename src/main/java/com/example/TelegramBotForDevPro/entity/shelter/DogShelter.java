@@ -4,6 +4,7 @@ package com.example.TelegramBotForDevPro.entity.shelter;
 
 
 import com.example.TelegramBotForDevPro.entity.animal.Dog;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -15,6 +16,7 @@ import java.util.List;
 public class DogShelter extends AnimalShelter {
 
     @OneToMany(mappedBy = "dogShelter")
+    @JsonIgnore
     private List<Dog> dogs;
 
     public List<Dog> getDogs() {
